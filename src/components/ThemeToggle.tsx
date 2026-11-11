@@ -10,7 +10,7 @@ export function ThemeToggle() {
     const next = dark ? "light" : "dark";
     document.documentElement.dataset.theme = next;
     try {
-      localStorage.setItem("pcpa-theme", next);
+      localStorage.setItem("pcpa-theme-v2", next);
     } catch {}
     setDark(!dark);
   }

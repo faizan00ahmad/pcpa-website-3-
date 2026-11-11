@@ -28,7 +28,7 @@ export const viewport: Viewport = {
 };
 
 /** Applies the saved light/dark choice before first paint (light is the default, whatever the device setting), and marks JS as available. */
-const initScript = `try{var d=document.documentElement,t=localStorage.getItem('pcpa-theme');if(t!=='dark'){t='light'}d.dataset.theme=t;d.classList.add('js')}catch(e){document.documentElement.classList.add('js')}`;
+const initScript = `try{var d=document.documentElement,t=localStorage.getItem('pcpa-theme-v2');if(t!=='dark'){t='light'}d.dataset.theme=t;d.classList.add('js')}catch(e){document.documentElement.classList.add('js')}`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

@@ -69,4 +69,4 @@
 .pc-gal-tabs { padding: 5px; width: max-content; max-width: 100%; border-radius: 999px; background: var(--glass-in); border: 1px solid var(--line); overflow-x: auto; scrollbar-width: none; }
 .pc-gal-tabs .pc-tab { border-radius: 999px; border-color: transparent; background: transparent; white-space: nowrap; }
 .pc-gal-tabs .pc-tab.active { background: var(--accent); color: var(--on-accent); }
-@media (max-width: 1040px) { .pc-hero-photo { aspect-ratio: 16 / 11; } }
+@media (max-width: 1040px) { .pc-hero-photo { aspect-ratio: 16 / 11; } .pc-hero-photo .pc-cycle-dots { bottom: auto; top: 14px; } }

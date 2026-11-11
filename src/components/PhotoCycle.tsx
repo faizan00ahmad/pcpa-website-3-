@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-export type CycleSlide = { src: string; alt?: string; pos?: string; flip?: boolean };
+export type CycleSlide = { src: string; alt?: string; pos?: string; flip?: boolean; shift?: string };
 
 /** Crossfading photo slideshow that fills its (positioned) parent. Static for reduced-motion visitors. */
 export function PhotoCycle({ slides, interval = 6500, sizes = "100vw", dots = false }: { slides: CycleSlide[]; interval?: number; sizes?: string; dots?: boolean }) {
@@ -18,7 +18,7 @@ export function PhotoCycle({ slides, interval = 6500, sizes = "100vw", dots = fa
   return (
     <div className="pc-cycle">
       {slides.map((s, k) => (
-        <Image key={s.src} src={s.src} alt={s.alt ?? ""} fill priority={k === 0} sizes={sizes} className={`pc-cycle-img${k === i ? " on" : ""}${s.flip ? " flip" : ""}`} style={{ objectPosition: s.pos }} />
+        <Image key={s.src} src={s.src} alt={s.alt ?? ""} fill priority={k === 0} sizes={sizes} className={`pc-cycle-img${k === i ? " on" : ""}${s.flip ? " flip" : ""}`} style={{ objectPosition: s.pos, translate: s.shift ? `${s.shift} 0` : undefined }} />
       ))}
       {dots && slides.length > 1 && (
         <div className="pc-cycle-dots">
