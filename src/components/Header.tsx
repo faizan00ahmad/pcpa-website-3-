@@ -68,6 +68,11 @@ export function Header() {
                 )}
               </li>
             ))}
+            <li className="pc-nav-cta">
+              <Link href="/membership/apply" className="pc-btn pc-btn-primary">
+                Join PCPA
+              </Link>
+            </li>
           </ul>
         </nav>
 
@@ -78,6 +83,9 @@ export function Header() {
           <ThemeToggle />
           <Link href="/portal" className="pc-iconbtn pc-portal-icon" aria-label="Member Portal">
             <Icon name="user" size={18} />
+          </Link>
+          <Link href="/membership/apply" className="pc-btn pc-btn-primary pc-btn-sm pc-head-cta">
+            Join PCPA
           </Link>
           <button type="button" className="pc-iconbtn pc-menu-btn" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} onClick={() => setOpen((o) => !o)}>
             <Icon name={open ? "close" : "menu"} size={20} />

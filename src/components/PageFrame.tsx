@@ -20,19 +20,23 @@ export function PageFrame({
     <>
       <section className="pc-banner">
         <div className="pc-wrap">
-          <p className="pc-eyebrow">{sec ? <Link href={sec.items[0].href}>{sec.title}</Link> : <Link href="/">PCPA</Link>}</p>
-          <h1>{title}</h1>
-          {subtitle && <p className="pc-banner-sub">{subtitle}</p>}
+          <div className="pc-banner-card">
+            <p className="pc-eyebrow">{sec ? <Link href={sec.items[0].href}>{sec.title}</Link> : <Link href="/">PCPA</Link>}</p>
+            <h1>{title}</h1>
+            {subtitle && <p className="pc-banner-sub">{subtitle}</p>}
+          </div>
         </div>
       </section>
       {sec && (
         <nav className="pc-localnav" aria-label={sec.title}>
-          <div className="pc-wrap pc-localnav-in">
+          <div className="pc-wrap">
+            <div className="pc-localnav-in">
             {sec.items.map((i) => (
               <Link key={i.href} href={i.href} className={i.href === current ? "active" : ""} aria-current={i.href === current ? "page" : undefined}>
                 {i.label}
               </Link>
             ))}
+            </div>
           </div>
         </nav>
       )}

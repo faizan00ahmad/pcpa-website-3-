@@ -2,9 +2,11 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { RevealInit } from "@/components/RevealInit";
+import { Motion } from "@/components/Motion";
 import { SearchDialog } from "@/components/SearchDialog";
 import "./globals.css";
+import "./liquid.css";
+import "./motion.css";
 
 // Fonts are bundled in src/fonts, so no network is needed in dev or build.
 const inter = localFont({ src: "../fonts/inter-latin.woff2", variable: "--font-inter", display: "swap", weight: "100 900" });
@@ -33,13 +35,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: initScript }} />
       </head>
       <body>
+        <div className="pc-aurora" aria-hidden>
+          <i />
+          <i />
+          <i />
+        </div>
         <Header />
         <main id="main" tabIndex={-1}>
           {children}
         </main>
         <Footer />
         <SearchDialog />
-        <RevealInit />
+        <Motion glow />
       </body>
     </html>
   );
