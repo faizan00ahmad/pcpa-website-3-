@@ -2,9 +2,7 @@
 
 Pakistan Crop Protection Association website (Next.js 15, React 19, TypeScript, plain CSS). The same pages as the proposal in an Apple-style Liquid Glass look: a floating glass navigation pill, translucent blurred surfaces with specular edges over a soft green aurora, a structured hero / services / figures / leadership / dates / news / contact layout, and light/dark mode.
 
-Subtle motion throughout (scroll reveals, count-up figures, hover lifts, hero entrance; all switched off for visitors who prefer reduced motion). An opening logo film plays once per browser session on the home page (Skip button / Esc to skip; skipped for reduced-motion visitors).
-
-## Run
+Subtle motion throughout (scroll reveals, count-up figures, hover lifts, hero entrance; all switched off for visitors who prefer reduced motion). ## Run
 
 ```bash
 npm install
