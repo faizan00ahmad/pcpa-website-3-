@@ -9,7 +9,7 @@ export const metadata: Metadata = { title: "Contact" };
 
 export default function ContactPage() {
   return (
-    <PageFrame title="Contact" subtitle="Reach the PCPA Secretariat">
+    <PageFrame banner="crops" title="Contact" subtitle="Reach the PCPA Secretariat">
       <div className="pc-grid pc-grid-2">
         {[offices.multan, offices.lahore].map((o) => (
           <section key={o.name} className="pc-card">

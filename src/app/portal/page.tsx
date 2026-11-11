@@ -6,7 +6,7 @@ export const metadata: Metadata = { title: "Member Portal (preview)" };
 
 export default function PortalPage() {
   return (
-    <PageFrame title="Member Portal" subtitle="Preview of the planned secure portal">
+    <PageFrame banner="aerial" title="Member Portal" subtitle="Preview of the planned secure portal">
       <PortalDemo />
     </PageFrame>
   );

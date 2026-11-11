@@ -70,3 +70,25 @@
 .pc-gal-tabs .pc-tab { border-radius: 999px; border-color: transparent; background: transparent; white-space: nowrap; }
 .pc-gal-tabs .pc-tab.active { background: var(--accent); color: var(--on-accent); }
 @media (max-width: 1040px) { .pc-hero-photo { aspect-ratio: 16 / 11; } .pc-hero-photo .pc-cycle-dots { bottom: auto; top: 14px; } }
+
+/* ===== Page photos: banners and in-page figures (shared) ===== */
+.pc-split { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 28px; align-items: start; }
+.pc-split-center { align-items: center; }
+.pc-figure { margin: 0; }
+.pc-figure-img { position: relative; aspect-ratio: 4 / 5; border-radius: var(--fig-r, 16px); overflow: hidden; box-shadow: 0 16px 36px rgba(8, 44, 24, 0.16); background: var(--green-soft, #e8f3ec); }
+.pc-figure-img img { object-fit: cover; transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.pc-figure:hover .pc-figure-img img { transform: scale(1.04); }
+.pc-figure figcaption { margin-top: 8px; font-size: 0.85rem; color: var(--muted); }
+.pc-photostrip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 6px 0 4px; }
+.pc-ps-item { position: relative; margin: 0; aspect-ratio: 4 / 3; border-radius: var(--fig-r-sm, 14px); overflow: hidden; background: var(--green-soft, #e8f3ec); }
+.pc-ps-item img { object-fit: cover; transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.pc-ps-item:hover img { transform: scale(1.06); }
+@media (max-width: 800px) { .pc-split { grid-template-columns: minmax(0, 1fr); } .pc-figure-img { aspect-ratio: 16 / 10; } }
+@media (max-width: 600px) { .pc-photostrip { grid-template-columns: minmax(0, 1fr); } .pc-ps-item { aspect-ratio: 16 / 9; } }
+
+/* ----- Website 3: glass banner with a photo ----- */
+:root { --fig-r: 28px; --fig-r-sm: 22px; }
+.pc-banner-img { object-fit: cover; }
+.pc-banner-shade { position: absolute; inset: 0; background: linear-gradient(110deg, rgba(8, 66, 41, 0.92) 25%, rgba(14, 100, 64, 0.68) 70%, rgba(18, 122, 78, 0.5)); }
+.pc-banner-card > :not(.pc-banner-img):not(.pc-banner-shade) { position: relative; z-index: 1; }
+.pc-figure-img, .pc-ps-item { border: 1px solid var(--glass-edge); box-shadow: var(--glass-shadow), var(--glass-spec); background: var(--bg-alt); }

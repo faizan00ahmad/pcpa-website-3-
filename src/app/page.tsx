@@ -53,8 +53,9 @@ export default function Home() {
                 sizes="(max-width:1000px) 100vw, 600px"
                 slides={[
                   { src: "/images/farm/tractor-in-mustard-field.jpg", alt: "A tractor on a track between flowering mustard fields at sunset", pos: "50% 55%" },
-                  { src: "/images/farm/combine-harvester-grain.jpg", alt: "A combine harvester pouring wheat grain into a trailer", pos: "50% 40%" },
-                  { src: "/images/farm/tractor-tilling-field.jpg", alt: "A red tractor tilling a stubble field beside a green maize crop", pos: "50% 28%" },
+                  { src: "/images/farm/tractor-spraying-at-sunset.jpg", alt: "A red tractor spraying a crop at sunset under a dramatic sky", pos: "52% 50%" },
+                  { src: "/images/farm/combine-harvesting-wheat.jpg", alt: "A combine harvester working a golden wheat field under a blue sky", pos: "52% 55%" },
+                  { src: "/images/farm/farmers-inspecting-crops.jpg", alt: "Two farmers inspecting leafy crops at sunrise", pos: "30% 55%" },
                   { src: "/images/farm/tractor-wheat-field.jpg", alt: "A tractor working a golden wheat field in the morning haze", pos: "50% 60%" },
                 ]}
               />

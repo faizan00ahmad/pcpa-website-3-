@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: "News" };
 
 export default function NewsPage() {
   return (
-    <PageFrame title="News" subtitle="Updates from PCPA and the sector">
+    <PageFrame banner="spraying" title="News" subtitle="Updates from PCPA and the sector">
       <div className="pc-grid pc-grid-2">
         {news.map((n) => (
           <Link key={n.slug} href={n.path} className="pc-card pc-news">

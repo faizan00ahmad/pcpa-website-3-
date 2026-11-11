@@ -4,6 +4,7 @@ import { PageFrame } from "@/components/PageFrame";
 import { InfoCard, Notice, Stat } from "@/components/blocks";
 import { intro, keyFacts, objectives, vision, mission } from "@/content/about";
 import { Icon } from "@/components/Icon";
+import { PhotoStrip, photoSets } from "@/components/Figures";
 
 export const metadata: Metadata = { title: "About PCPA" };
 
@@ -11,6 +12,7 @@ export default function AboutPage() {
   return (
     <PageFrame title="About PCPA" subtitle="Who we are and what we do" section="about" current="/about">
       <p className="pc-lead">{intro}</p>
+      <PhotoStrip photos={photoSets.about} />
       <div className="pc-grid pc-grid-2">
         <div className="pc-card">
           <h2 className="pc-h3">Vision</h2>

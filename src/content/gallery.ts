@@ -1,12 +1,11 @@
-/** Photo gallery. Captions are short descriptions of what each photo shows; occasion details can be added by the Secretariat. */
-export type GalleryCat = "meetings" | "events" | "farm";
+/** Photo gallery: people at PCPA meetings and events only. Captions describe what each photo shows; occasion details can be added by the Secretariat. */
+export type GalleryCat = "meetings" | "events";
 export type GalleryItem = { src: string; w: number; h: number; cat: GalleryCat; caption: string; alt: string };
 
 export const galleryCats: { id: GalleryCat | "all"; label: string }[] = [
   { id: "all", label: "All photos" },
   { id: "meetings", label: "Meetings" },
   { id: "events", label: "Events & ceremonies" },
-  { id: "farm", label: "Fields & farming" },
 ];
 
 export const gallery: GalleryItem[] = [
@@ -27,14 +26,4 @@ export const gallery: GalleryItem[] = [
   { src: "/images/slider/slide-13.jpg", w: 1280, h: 958, cat: "meetings", caption: "Committee discussion", alt: "Members discussing papers at a committee table" },
   { src: "/images/slider/slide-14.jpg", w: 1600, h: 900, cat: "meetings", caption: "Discussion session", alt: "Members listening during a discussion session" },
   { src: "/images/slider/slide-17.jpg", w: 1280, h: 958, cat: "meetings", caption: "Group photo after a meeting", alt: "Members pose together after a meeting" },
-  { src: "/images/farm/tractor-in-mustard-field.jpg", w: 736, h: 1307, cat: "farm", caption: "Tractor on a mustard-field track", alt: "A tractor driving along a path between flowering mustard fields at sunset" },
-  { src: "/images/farm/farmer-spreading-fertiliser.jpg", w: 1333, h: 2000, cat: "farm", caption: "Farmer spreading fertiliser", alt: "A farmer scatters fertiliser by hand across a young wheat field" },
-  { src: "/images/farm/tractor-tilling-field.jpg", w: 1500, h: 2000, cat: "farm", caption: "Tractor tilling after harvest", alt: "A red tractor tills a stubble field beside a green maize crop" },
-  { src: "/images/farm/tractor-wheat-field.jpg", w: 736, h: 1308, cat: "farm", caption: "Tractor at work in a wheat field", alt: "A tractor working a golden wheat field in the morning haze" },
-  { src: "/images/farm/harvest-at-sunset.jpg", w: 612, h: 408, cat: "farm", caption: "Harvest at sunset", alt: "Farmers handle straw next to a thresher at sunset" },
-  { src: "/images/farm/threshing-in-dust.jpg", w: 612, h: 451, cat: "farm", caption: "Threshing at sunrise", alt: "Workers rake grain on a threshing floor in the morning dust" },
-  { src: "/images/farm/combine-harvester-grain.jpg", w: 750, h: 1000, cat: "farm", caption: "Combine harvester unloading grain", alt: "A combine harvester pours wheat grain into a trailer" },
-  { src: "/images/farm/tractor-and-field-workers.jpg", w: 612, h: 408, cat: "farm", caption: "Tractor and field workers", alt: "A red tractor and farm workers in a field" },
-  { src: "/images/farm/sunset-over-fields.jpg", w: 960, h: 544, cat: "farm", caption: "Sunset over the fields", alt: "The sun sets over green fields and a farm track" },
-  { src: "/images/farm/tractor-at-sunset.jpg", w: 552, h: 828, cat: "farm", caption: "Tractor at sunset", alt: "A tractor ploughing beneath a red sun" },
 ];

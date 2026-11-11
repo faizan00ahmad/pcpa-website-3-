@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { gallery } from "@/content/gallery";
 
-const pick = ["/images/slider/slide-08.jpg", "/images/farm/tractor-in-mustard-field.jpg", "/images/slider/slide-09.jpg", "/images/farm/farmer-spreading-fertiliser.jpg", "/images/slider/slide-07.jpg"];
+const pick = ["/images/slider/slide-08.jpg", "/images/slider/slide-09.jpg", "/images/slider/slide-07.jpg", "/images/slider/slide-11.jpg", "/images/slider/slide-15.jpg"];
 
 /** Home-page preview of the photo gallery: one large photo and four small ones, all linking to /gallery. */
 export function GalleryStrip() {

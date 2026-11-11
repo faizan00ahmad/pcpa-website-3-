@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageFrame } from "@/components/PageFrame";
 import { Notice, TileLink } from "@/components/blocks";
+import { PhotoStrip, photoSets } from "@/components/Figures";
 import { fees, services } from "@/content/membership";
 
 export const metadata: Metadata = { title: "Membership" };
@@ -10,6 +11,7 @@ export default function MembershipHub() {
   return (
     <PageFrame title="Membership" subtitle="Join PCPA as a Corporate or Associate member" section="membership" current="/membership">
       <p className="pc-lead">PCPA welcomes crop protection companies. Choose a service below, or read the procedure first.</p>
+      <PhotoStrip photos={photoSets.membership} />
       <div className="pc-grid pc-grid-3">
         {services.map((s) => (
           <TileLink key={s.href} {...s} />

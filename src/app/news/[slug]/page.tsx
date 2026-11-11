@@ -18,7 +18,7 @@ export default async function NewsPost({ params }: { params: Promise<{ slug: str
   const post = news.find((n) => n.slug === slug);
   if (!post) notFound();
   return (
-    <PageFrame title={post.title} subtitle={`${post.published} · ${post.author}`}>
+    <PageFrame banner="spraying" title={post.title} subtitle={`${post.published} · ${post.author}`}>
       <article className="pc-article">
         <Image src={post.image} alt="" width={1000} height={560} sizes="(max-width:900px) 100vw, 800px" priority />
         {post.paragraphs.map((p, i) => (

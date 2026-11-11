@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: "Download Centre" };
 
 export default function DownloadsPage() {
   return (
-    <PageFrame title="Download Centre" subtitle="Forms, lists, circulars and records">
+    <PageFrame banner="tilling" title="Download Centre" subtitle="Forms, lists, circulars and records">
       <DownloadCentre docs={withSizes(documents)} />
     </PageFrame>
   );
