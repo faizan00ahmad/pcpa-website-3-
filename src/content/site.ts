@@ -83,6 +83,7 @@ export const nav: NavItem[] = [
     children: [
       { label: "Meetings & Decisions", href: "/meetings" },
       { label: "Elections", href: "/elections" },
+      { label: "Photo Gallery", href: "/gallery" },
     ],
   },
   { label: "Downloads", href: "/downloads" },
@@ -100,6 +101,7 @@ export const sections: Record<string, { title: string; items: { label: string; h
     items: [
       { label: "Meetings & Decisions", href: "/meetings" },
       { label: "Elections", href: "/elections" },
+      { label: "Photo Gallery", href: "/gallery" },
     ],
   },
   complaints: {

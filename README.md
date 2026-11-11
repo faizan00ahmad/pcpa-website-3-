@@ -19,6 +19,7 @@ Requires Node 20.9 or newer. Fonts are bundled, so no network access is needed t
 * Real PCPA data: offices and contacts, Cabinet and Executive Director, Executive Committee 2019-20 archive, election and AGM dates, the 31 documents and their PDFs, and the 77 Corporate members (company, class and city only) from the 2025-26 list.
 * From the redesign proposal: the membership procedure (Route 1 / Route 2) and the fee schedule. **Confirm the fees with PCPA before relying on them.**
 * Drafted from public information and **pending PCPA review**: About, Vision, Mission, Objectives, Governance and Affiliations wording.
+* Photos: the Photo Gallery (Meetings > Photo Gallery) shows the Association's meeting and event photos plus farm photos supplied for the redesign (hero images). **Confirm usage rights for the farm photos before going public**; one of them carried a third-party watermark, which was cropped out. Captions are brief descriptions; dates and occasions are to be updated.
 * Shown as "to be updated": committee composition, meeting minutes and decisions, the Associate member directory (the PDF is linked), the 2026-28 Executive Committee list.
 
 ## Front-end only (no server)

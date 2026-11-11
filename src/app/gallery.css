@@ -1,0 +1,72 @@
+/* ===== Photo gallery, home strip, hero slideshow, lightbox (shared by all three sites) ===== */
+@keyframes pc-kb { from { scale: 1.02; } to { scale: 1.1; } }
+
+/* gallery page */
+.pc-gal-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 22px; }
+.pc-gal-count { font-weight: 600; font-size: 0.82em; margin-left: 4px; font-variant-numeric: tabular-nums; }
+.pc-gal { columns: 3 240px; column-gap: 14px; margin: 0; padding: 0; list-style: none; }
+.pc-gal-item { break-inside: avoid; margin: 0 0 14px; }
+.pc-gal-btn { position: relative; display: block; width: 100%; padding: 0; border: 0; border-radius: 14px; overflow: hidden; cursor: zoom-in; line-height: 0; background: var(--green-soft, #e8f3ec); }
+.pc-gal-btn img { width: 100%; height: auto; transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.pc-gal-btn:hover img { transform: scale(1.05); }
+.pc-gal-cap, .pc-strip-cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 30px 12px 10px; line-height: 1.3; font-size: 0.85rem; font-weight: 600; text-align: left; color: #fff; background: linear-gradient(transparent, rgba(0, 0, 0, 0.74)); opacity: 0; transform: translateY(6px); transition: opacity 0.3s, transform 0.3s; }
+.pc-gal-btn:hover .pc-gal-cap, .pc-gal-btn:focus-visible .pc-gal-cap, .pc-strip-item:hover .pc-strip-cap, .pc-strip-item:focus-visible .pc-strip-cap { opacity: 1; transform: none; }
+@media (hover: none) { .pc-gal-cap, .pc-strip-cap { opacity: 1; transform: none; } }
+.pc-gal-note { margin-top: 18px; }
+
+/* home strip */
+.pc-strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 12px; height: clamp(360px, 42vw, 520px); }
+.pc-strip-item { position: relative; display: block; overflow: hidden; border-radius: 16px; background: var(--green-soft, #e8f3ec); }
+.pc-strip-lead { grid-column: span 2; grid-row: span 2; }
+.pc-strip-item img { object-fit: cover; transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.pc-strip-item:hover img { transform: scale(1.06); }
+.pc-strip-item:nth-child(4) img { object-position: 50% 8%; }
+
+/* hero slideshow (crossfade + slow zoom) */
+.pc-cycle { position: absolute; inset: 0; overflow: hidden; }
+.pc-cycle-img { object-fit: cover; opacity: 0; transition: opacity 1.4s ease; }
+.pc-cycle-img.on { opacity: 1; animation: pc-kb 12s ease-out both; }
+.pc-cycle-img.flip { transform: scaleX(-1); }
+.pc-cycle-dots { position: absolute; bottom: 14px; left: 0; right: 0; z-index: 3; display: flex; justify-content: center; gap: 8px; }
+.pc-cycle-dots button { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 99px; background: rgba(255, 255, 255, 0.6); cursor: pointer; transition: width 0.3s, background 0.3s; }
+.pc-cycle-dots button.on { width: 26px; background: #fff; }
+
+/* lightbox */
+.pc-lb { position: fixed; inset: 0; z-index: 300; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 10px; padding: 16px; background: rgba(5, 16, 10, 0.92); animation: pc-fade 0.25s ease; }
+.pc-lb-fig { margin: 0; display: flex; flex-direction: column; align-items: center; min-width: 0; max-height: 100%; }
+.pc-lb-img { max-width: 100%; max-height: calc(100vh - 130px); width: auto; height: auto; object-fit: contain; border-radius: 10px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5); animation: pc-fade 0.35s ease; }
+.pc-lb-fig figcaption { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: center; gap: 4px 14px; margin-top: 12px; color: #fff; text-align: center; }
+.pc-lb-fig figcaption span { opacity: 0.8; font-size: 0.85rem; font-variant-numeric: tabular-nums; }
+.pc-lb-btn { width: 46px; height: 46px; display: grid; place-items: center; padding: 0; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.32); background: rgba(255, 255, 255, 0.14); color: #fff; cursor: pointer; transition: background 0.2s, transform 0.2s; }
+.pc-lb-btn:hover { background: rgba(255, 255, 255, 0.28); transform: scale(1.06); }
+.pc-lb-close { position: absolute; top: 14px; right: 14px; }
+.pc-lb-prev svg { transform: rotate(180deg); }
+.pc-lb-btn:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+
+@media (max-width: 800px) {
+  .pc-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; height: auto; }
+  .pc-strip-lead { grid-column: span 2; grid-row: auto; aspect-ratio: 16 / 10; }
+  .pc-strip-item:not(.pc-strip-lead) { aspect-ratio: 1; }
+  .pc-gal { columns: 2 150px; column-gap: 10px; }
+  .pc-gal-item { margin-bottom: 10px; }
+  .pc-lb { grid-template-columns: minmax(0, 1fr); padding: 60px 10px 78px; }
+  .pc-lb-prev, .pc-lb-next { position: absolute; bottom: 16px; }
+  .pc-lb-prev { left: calc(50% - 56px); }
+  .pc-lb-next { left: calc(50% + 10px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pc-cycle-img.on, .pc-lb, .pc-lb-img { animation: none; }
+  .pc-cycle-img { transition: none; }
+}
+
+/* ----- Website 3: glass treatment ----- */
+.pc-hero-photo { position: relative; aspect-ratio: 4 / 4.5; }
+.pc-gal-btn, .pc-strip-item { border-radius: 22px; border: 1px solid var(--glass-edge); box-shadow: var(--glass-shadow), var(--glass-spec); background: var(--bg-alt); }
+.pc-strip-item { border-radius: 26px; }
+.pc-lb { background: rgba(4, 12, 8, 0.72); -webkit-backdrop-filter: blur(22px) saturate(160%); backdrop-filter: blur(22px) saturate(160%); }
+.pc-lb-btn { background: rgba(255, 255, 255, 0.16); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4); }
+.pc-lb-img { border-radius: 22px; border: 1px solid rgba(255, 255, 255, 0.25); }
+.pc-gal-tabs { padding: 5px; width: max-content; max-width: 100%; border-radius: 999px; background: var(--glass-in); border: 1px solid var(--line); overflow-x: auto; scrollbar-width: none; }
+.pc-gal-tabs .pc-tab { border-radius: 999px; border-color: transparent; background: transparent; white-space: nowrap; }
+.pc-gal-tabs .pc-tab.active { background: var(--accent); color: var(--on-accent); }
+@media (max-width: 1040px) { .pc-hero-photo { aspect-ratio: 16 / 11; } }

@@ -1,8 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Icon, type IconName } from "@/components/Icon";
+import { GalleryStrip } from "@/components/GalleryStrip";
 import { IntroVideo } from "@/components/IntroVideo";
 import { PersonCard } from "@/components/blocks";
+import { PhotoCycle } from "@/components/PhotoCycle";
 import { documents } from "@/content/documents";
 import { keyDates } from "@/content/events";
 import { news } from "@/content/news";
@@ -49,7 +51,15 @@ export default function Home() {
 
           <div className="pc-hero-visual">
             <div className="pc-hero-photo">
-              <Image src="/images/slider/slide-07.jpg" alt="PCPA members at an Association event" width={1200} height={1000} priority sizes="(max-width:1000px) 100vw, 600px" />
+              <PhotoCycle
+                dots
+                sizes="(max-width:1000px) 100vw, 600px"
+                slides={[
+                  { src: "/images/farm/tractor-in-mustard-field.jpg", alt: "A tractor on a track between flowering mustard fields at sunset", pos: "50% 55%" },
+                  { src: "/images/farm/farmer-spreading-fertiliser.jpg", alt: "A farmer scattering fertiliser across a young wheat field", pos: "50% 30%" },
+                  { src: "/images/farm/tractor-wheat-field.jpg", alt: "A tractor working a golden wheat field in the morning haze", pos: "50% 60%" },
+                ]}
+              />
             </div>
             <Link href={next ? "/meetings" : "/"} className="pc-float pc-float-next">
               <span className="pc-float-icon">
@@ -140,7 +150,23 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5 · Dates and documents */}
+      {/* 5 · Photo gallery */}
+      <section className="pc-section">
+        <div className="pc-wrap">
+          <header className="pc-sec-head pc-sec-head-row">
+            <div>
+              <p className="pc-eyebrow">Gallery</p>
+              <h2 className="pc-h2">Meetings, events and the fields.</h2>
+            </div>
+            <Link href="/gallery" className="pc-textlink">
+              View all photos <Icon name="chevronRight" size={16} />
+            </Link>
+          </header>
+          <GalleryStrip />
+        </div>
+      </section>
+
+      {/* 6 · Dates and documents */}
       <section className="pc-section pc-section-tight">
         <div className="pc-wrap pc-two">
           <div className="pc-panel">
@@ -180,7 +206,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6 · News */}
+      {/* 7 · News */}
       <section className="pc-section">
         <div className="pc-wrap">
           <header className="pc-sec-head pc-sec-head-row">
@@ -206,7 +232,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 7 · Contact */}
+      {/* 8 · Contact */}
       <section className="pc-section pc-section-tight">
         <div className="pc-wrap">
           <div className="pc-cta-panel">
