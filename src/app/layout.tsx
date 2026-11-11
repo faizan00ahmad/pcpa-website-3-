@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { IntroVideo } from "@/components/IntroVideo";
 import { Motion } from "@/components/Motion";
 import { SearchDialog } from "@/components/SearchDialog";
 import "./globals.css";
@@ -19,15 +20,15 @@ export const metadata: Metadata = {
 };
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#000000" },
+    { media: "(prefers-color-scheme: light)", color: "#e8f1ec" },
+    { media: "(prefers-color-scheme: dark)", color: "#e8f1ec" },
   ],
   width: "device-width",
   initialScale: 1,
 };
 
-/** Applies the saved light/dark choice (or the system setting) before first paint, and marks JS as available. */
-const initScript = `try{var d=document.documentElement,t=localStorage.getItem('pcpa-theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}d.dataset.theme=t;d.classList.add('js')}catch(e){document.documentElement.classList.add('js')}`;
+/** Applies the saved light/dark choice before first paint (light is the default, whatever the device setting), and marks JS as available. */
+const initScript = `try{var d=document.documentElement,t=localStorage.getItem('pcpa-theme');if(t!=='dark'){t='light'}d.dataset.theme=t;d.classList.add('js')}catch(e){document.documentElement.classList.add('js')}`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -41,6 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <i />
           <i />
         </div>
+        <IntroVideo />
         <Header />
         <main id="main" tabIndex={-1}>
           {children}

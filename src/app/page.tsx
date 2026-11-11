@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Icon, type IconName } from "@/components/Icon";
 import { GalleryStrip } from "@/components/GalleryStrip";
-import { IntroVideo } from "@/components/IntroVideo";
 import { PersonCard } from "@/components/blocks";
 import { PhotoCycle } from "@/components/PhotoCycle";
 import { documents } from "@/content/documents";
@@ -25,8 +24,6 @@ export default function Home() {
   const next = keyDates[0];
   return (
     <>
-      <IntroVideo />
-
       {/* 1 · Hero */}
       <section className="pc-hero" aria-label="Welcome">
         <div className="pc-wrap pc-hero-grid">
