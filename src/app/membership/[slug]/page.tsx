@@ -12,6 +12,7 @@ import { directory } from "@/content/directory";
 import { documents } from "@/content/documents";
 import { fees, routes } from "@/content/membership";
 import { withSizes } from "@/lib/docs";
+import { RelatedDocs } from "@/components/RelatedDocs";
 
 const pages: Record<string, { title: string; subtitle: string }> = {
   apply: { title: "Apply for Membership", subtitle: "Start your application" },
@@ -44,6 +45,18 @@ export default async function MembershipPage({ params }: { params: Promise<{ slu
             <Link className="pc-link" href="/membership/forms">Forms &amp; Documents</Link>.
           </Notice>
           <RequestForm config={applyForm} />
+          <RelatedDocs
+            title="Printable forms and supporting documents"
+            intro="Prefer paper, or need the forms for your records? Preview or download them here."
+            ids={["DL-032", "DL-033", "DL-035", "DL-001", "DL-002"]}
+            notes={{
+              "DL-032": "Complete after Coordinator and Chief Coordinator verification",
+              "DL-033": "Application together with the authority letter",
+              "DL-035": "One signed undertaking for each applicant company",
+              "DL-001": "Membership application form for 2026-2027 (Word)",
+              "DL-002": "Annual subscription notice for 2026-2027",
+            }}
+          />
         </>
       )}
 
@@ -57,6 +70,19 @@ export default async function MembershipPage({ params }: { params: Promise<{ slu
             </section>
           ))}
           <Notice>Pay the membership fee only after preliminary clearance of your application.</Notice>
+          <RelatedDocs
+            title="Forms used in the procedure"
+            intro="The formats used at each stage of processing a membership application."
+            ids={["DL-034", "DL-032", "DL-033", "DL-036", "DL-037", "DL-035"]}
+            notes={{
+              "DL-034": "MEM-01 and MEM-02 · Joint sheet for the Regional Coordinator and Chief Coordinator",
+              "DL-032": "Filed after Coordinator and Chief Coordinator verification",
+              "DL-033": "Application together with the authority letter",
+              "DL-036": "MEM-03 and MEM-04 · Secretary General records documents received; Finance verification",
+              "DL-037": "MEM-05 · Membership admission decision record",
+              "DL-035": "One signed undertaking for each applicant company",
+            }}
+          />
         </>
       )}
 
@@ -89,6 +115,7 @@ export default async function MembershipPage({ params }: { params: Promise<{ slu
               </li>
             ))}
           </ul>
+          <RelatedDocs title="Fee documents" ids={["DL-002", "DL-001"]} notes={{ "DL-002": "Annual subscription notice for 2026-2027", "DL-001": "Membership application form for 2026-2027 (Word)" }} />
           <Notice>Please confirm the current fee with the Secretariat before paying — the schedule above follows the approved proposal and may change.</Notice>
         </>
       )}
@@ -105,22 +132,16 @@ export default async function MembershipPage({ params }: { params: Promise<{ slu
               <Directory entries={directory} />
             </>
           )}
-          <ul className="pc-linklist">
-            <li>
-              <a href="/docs/CORPORATE-MEMBERS-PCPA.pdf" target="_blank" rel="noopener noreferrer">
-                <Icon name="pdf" size={18} /> Corporate Members PCPA (PDF)
-              </a>
-            </li>
-            <li>
-              <a href="/docs/ASSOCIATE-MEMBERS-PCPA.pdf" target="_blank" rel="noopener noreferrer">
-                <Icon name="pdf" size={18} /> Associate Members PCPA (PDF)
-              </a>
-            </li>
-          </ul>
+          <RelatedDocs title="Official member lists" ids={["DL-007", "DL-008"]} headingClass="pc-h3" />
         </>
       )}
 
-      {slug === "renew" && <RequestForm config={renewForm} />}
+      {slug === "renew" && (
+        <>
+          <RequestForm config={renewForm} />
+          <RelatedDocs title="Documents for renewal" ids={["DL-002", "DL-001"]} notes={{ "DL-002": "Annual subscription notice for 2026-2027", "DL-001": "Membership form for 2026-2027 (Word)" }} />
+        </>
+      )}
     </PageFrame>
   );
 }

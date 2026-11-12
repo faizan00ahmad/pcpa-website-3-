@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Icon, type IconName } from "@/components/Icon";
 import { GalleryStrip } from "@/components/GalleryStrip";
 import { PersonCard } from "@/components/blocks";
+import { PreviewButton } from "@/features/PreviewButton";
 import { PhotoCycle } from "@/components/PhotoCycle";
 import { documents } from "@/content/documents";
 import { keyDates } from "@/content/events";
@@ -198,6 +199,7 @@ export default function Home() {
                   <a href={d.file} target="_blank" rel="noopener noreferrer">
                     {d.title}
                   </a>
+                  <PreviewButton title={d.title} file={d.file} category={d.category} date={d.date ?? d.year} iconOnly />
                 </li>
               ))}
             </ul>

@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { Icon } from "@/components/Icon";
 import { categories, type DocItem } from "@/content/documents";
+import { DocPreview } from "./DocPreview";
 
 type Doc = DocItem & { size: string };
 
@@ -14,6 +15,7 @@ export function DownloadCentre({ docs, initialCategory = "All" }: { docs: Doc[];
   const [type, setType] = useState("All");
   const [auth, setAuth] = useState("All");
   const [showOld, setShowOld] = useState(true);
+  const [pv, setPv] = useState<string | null>(null);
 
   const years = useMemo(() => Array.from(new Set(docs.map((d) => d.year).filter(Boolean))).sort().reverse(), [docs]);
   const auths = useMemo(() => Array.from(new Set(docs.map((d) => d.authority))).sort(), [docs]);
@@ -35,6 +37,12 @@ export function DownloadCentre({ docs, initialCategory = "All" }: { docs: Doc[];
         (!s || `${d.title} ${d.id} ${d.category} ${d.year} ${d.authority}`.toLowerCase().includes(s)),
     );
   }, [docs, q, cat, year, type, auth, showOld]);
+
+  const pvIndex = pv ? rows.findIndex((d) => d.id === pv) : -1;
+  const step = (d: number) => {
+    if (!rows.length || pvIndex < 0) return;
+    setPv(rows[(pvIndex + d + rows.length) % rows.length].id);
+  };
 
   function reset() {
     setQ("");
@@ -116,7 +124,7 @@ export function DownloadCentre({ docs, initialCategory = "All" }: { docs: Doc[];
                 <th>Category</th>
                 <th>Type</th>
                 <th className="pc-right">
-                  <span className="pc-sr">Download</span>
+                  <span className="pc-sr">Preview and download</span>
                 </th>
               </tr>
             </thead>
@@ -136,6 +144,9 @@ export function DownloadCentre({ docs, initialCategory = "All" }: { docs: Doc[];
                     {d.size ? ` · ${d.size}` : ""}
                   </td>
                   <td className="pc-right">
+                    <button type="button" className="pc-icon-link" aria-label={`Preview ${d.title}`} onClick={() => setPv(d.id)}>
+                      <Icon name="eye" size={18} />
+                    </button>
                     <a href={d.file} target="_blank" rel="noopener noreferrer" className="pc-icon-link" aria-label={`Download ${d.title}`}>
                       <Icon name="download" size={18} />
                     </a>
@@ -154,9 +165,10 @@ export function DownloadCentre({ docs, initialCategory = "All" }: { docs: Doc[];
         </div>
 
         <p className="pc-note">
-          <Icon name="info" size={18} /> Superseded documents remain archived but are clearly marked. The current version is always linked.
+          <Icon name="info" size={18} /> Superseded documents remain archived but are clearly marked. The current version is always linked. Use the eye icon to preview a document without leaving the page.
         </p>
       </div>
+      {pvIndex >= 0 && <DocPreview doc={rows[pvIndex]} index={pvIndex} total={rows.length} onClose={() => setPv(null)} onStep={step} />}
     </div>
   );
 }

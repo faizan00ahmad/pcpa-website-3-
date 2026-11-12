@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { PageFrame } from "@/components/PageFrame";
 import { InfoCard, Notice } from "@/components/blocks";
 import { PhotoStrip, SideFigure, photoSets } from "@/components/Figures";
+import { RelatedDocs } from "@/components/RelatedDocs";
 import { affiliations, governance, history, mission, objectives, principles, vision } from "@/content/about";
 
 const pages: Record<string, { title: string; subtitle: string }> = {
@@ -88,6 +89,12 @@ export default async function AboutSub({ params }: { params: Promise<{ slug: str
             <InfoCard key={g.title} title={g.title} text={g.text} />
           ))}
         </div>
+        <RelatedDocs
+          title="Legal framework"
+          intro="The law and rules that govern trade organisations in Pakistan."
+          ids={["DL-038", "DL-039"]}
+          notes={{ "DL-038": "The Trade Organizations Act, 2013 (Act II of 2013)", "DL-039": "Rules made under the Act, notified by the Ministry of Commerce on 26 March 2013" }}
+        />
         </>
       )}
       {slug === "affiliations" && (

@@ -4,6 +4,7 @@ import { PageFrame } from "@/components/PageFrame";
 import { Notice, TileLink } from "@/components/blocks";
 import { PhotoStrip, photoSets } from "@/components/Figures";
 import { fees, services } from "@/content/membership";
+import { RelatedDocs } from "@/components/RelatedDocs";
 
 export const metadata: Metadata = { title: "Membership" };
 
@@ -38,6 +39,7 @@ export default function MembershipHub() {
           </tbody>
         </table>
       </div>
+      <RelatedDocs title="Forms to get started" ids={["DL-032", "DL-033", "DL-001"]} />
       <Notice>
         See the <Link className="pc-link" href="/membership/fees">full fee schedule and notes</Link>.
       </Notice>

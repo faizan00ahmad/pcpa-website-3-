@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Icon, type IconName } from "./Icon";
+import { PreviewButton } from "@/features/PreviewButton";
 import type { Person } from "@/content/people";
 
 /** Reusable, skin-agnostic content blocks. Each skin styles the pc-* classes. */
@@ -99,6 +100,7 @@ export function DocLink({ title, file, status }: { title: string; file: string; 
       ) : (
         <span>{title}</span>
       )}
+      {file && <PreviewButton title={title} file={file} iconOnly />}
       {status && <span className={`pc-badge ${file ? "pc-badge-ok" : "pc-badge-muted"}`}>{status}</span>}
     </li>
   );

@@ -12,6 +12,7 @@ import { cabinet, executiveDirector, formerChairmen } from "@/content/people";
 import { committeeFields, committees, publicVsConfidential } from "@/content/committees";
 import { offices } from "@/content/site";
 import { secretariatServices } from "@/content/membership";
+import { RelatedDocs } from "@/components/RelatedDocs";
 
 const pages: Record<string, { title: string; subtitle: string }> = {
   cabinet: { title: "Cabinet", subtitle: "Office bearers of the current term" },
@@ -58,6 +59,7 @@ export default async function LeadershipPage({ params }: { params: Promise<{ slu
           <h2 className="pc-h2">{ecTitle}</h2>
           <p className="pc-muted">{ecSubtitle}</p>
           <ECTable rows={ec201920} />
+          <RelatedDocs title="Office bearer lists" intro="Archived lists of office bearers." ids={["DL-026", "DL-027"]} />
         </>
       )}
 
@@ -89,6 +91,7 @@ export default async function LeadershipPage({ params }: { params: Promise<{ slu
             ))}
           </div>
           <Notice>{publicVsConfidential}</Notice>
+          <RelatedDocs title="Committee documents" ids={["DL-037"]} notes={{ "DL-037": "HR Committee form (MEM-05) used to record membership admission decisions" }} />
         </>
       )}
 
@@ -117,6 +120,7 @@ export default async function LeadershipPage({ params }: { params: Promise<{ slu
             </table>
           </div>
           <ToBeUpdated>Earlier chairmen will be added as the PCPA archive is digitised.</ToBeUpdated>
+          <RelatedDocs title="Office bearer lists" intro="Archived lists of office bearers." ids={["DL-026", "DL-027"]} />
         </>
       )}
 

@@ -9,6 +9,8 @@ export type DocItem = {
   type: DocType;
   authority: string;
   status?: "Current" | "Superseded";
+  /** Supplied by PCPA for the current procedure: always listed first. */
+  featured?: boolean;
 };
 
 export const categories = [
@@ -43,7 +45,7 @@ const d = (
   ...extra,
 });
 
-export const documents: DocItem[] = [
+const all: DocItem[] = [
   // Membership forms and subscription
   d(1, "Membership Application Form 2026-2027", "/docs/MEMBERSHIP-APPLICATION-2026-2027.docx", "Membership Forms", "2026", "PCPA Secretariat", { date: "Jan 2026", status: "Current" }),
   d(2, "Annual Subscription of PCPA 2026-2027", "/docs/ANNUAL-SUBSCRIPTION-OF-PCPA-2026-27.pdf", "Membership Forms", "2026", "PCPA Secretariat", { date: "23 Jan 2026", status: "Current" }),
@@ -52,13 +54,13 @@ export const documents: DocItem[] = [
   d(5, "PCPA Membership Form (2024)", A + "membership-form-2024.pdf", "Membership Forms", "2024", "PCPA Secretariat", { date: "22 May 2024", status: "Superseded" }),
   d(6, "PCPA Form (2024)", A + "pcpa-form-2024.pdf", "Membership Forms", "2024", "PCPA Secretariat", { date: "3 Jun 2024", status: "Superseded" }),
   // Membership procedure forms (formats supplied for the new application procedure)
-  d(32, "Formal Membership Application", "/docs/PCPA-MEMBERSHIP-APPLICATION.pdf", "Membership Forms", "2026", "PCPA Secretariat", { status: "Current" }),
-  d(33, "Formal Membership Application with Authority Letter", "/docs/PCPA-MEMBERSHIP-APPLICATION-AND-AUTHORITY.pdf", "Membership Forms", "2026", "PCPA Secretariat", { status: "Current" }),
-  d(34, "Membership Verification & Recommendation – Coordinator / Chief Coordinator", "/docs/MEMBERSHIP-VERIFICATION-COORDINATOR-CHIEF-COORDINATOR.pdf", "Membership Forms", "2026", "PCPA Secretariat", { date: "Oct 2026", status: "Current" }),
-  d(35, "PCPA Member Undertaking", "/docs/PCPA-MEMBER-UNDERTAKING.pdf", "Membership Forms", "2026", "PCPA Secretariat", { date: "Oct 2026", status: "Current" }),
-  d(36, "Secretary General Checklist & Finance Verification", "/docs/SECRETARY-GENERAL-CHECKLIST-AND-FINANCE-VERIFICATION.pdf", "Membership Forms", "2026", "PCPA Secretariat", { date: "Oct 2026", status: "Current" }),
+  d(32, "Formal Membership Application", "/docs/PCPA-MEMBERSHIP-APPLICATION.pdf", "Membership Forms", "2026", "PCPA Secretariat", { featured: true, status: "Current" }),
+  d(33, "Formal Membership Application with Authority Letter", "/docs/PCPA-MEMBERSHIP-APPLICATION-AND-AUTHORITY.pdf", "Membership Forms", "2026", "PCPA Secretariat", { featured: true, status: "Current" }),
+  d(34, "Membership Verification & Recommendation – Coordinator / Chief Coordinator", "/docs/MEMBERSHIP-VERIFICATION-COORDINATOR-CHIEF-COORDINATOR.pdf", "Membership Forms", "2026", "PCPA Secretariat", { featured: true, date: "Oct 2026", status: "Current" }),
+  d(35, "PCPA Member Undertaking", "/docs/PCPA-MEMBER-UNDERTAKING.pdf", "Membership Forms", "2026", "PCPA Secretariat", { featured: true, date: "Oct 2026", status: "Current" }),
+  d(36, "Secretary General Checklist & Finance Verification", "/docs/SECRETARY-GENERAL-CHECKLIST-AND-FINANCE-VERIFICATION.pdf", "Membership Forms", "2026", "PCPA Secretariat", { featured: true, date: "Oct 2026", status: "Current" }),
   // HR Committee
-  d(37, "HR Committee Membership Review", "/docs/HR-COMMITTEE-MEMBERSHIP-REVIEW.pdf", "HR Committee", "2026", "PCPA Secretariat", { date: "Oct 2026", status: "Current" }),
+  d(37, "HR Committee Membership Review", "/docs/HR-COMMITTEE-MEMBERSHIP-REVIEW.pdf", "HR Committee", "2026", "PCPA Secretariat", { featured: true, date: "Oct 2026", status: "Current" }),
   // Member lists
   d(7, "Corporate Members PCPA (2025-26)", "/docs/CORPORATE-MEMBERS-PCPA.pdf", "Member Lists", "2026", "PCPA Secretariat", { date: "24 Jan 2026", status: "Current" }),
   d(8, "Associate Members PCPA (2025-26)", "/docs/ASSOCIATE-MEMBERS-PCPA.pdf", "Member Lists", "2026", "PCPA Secretariat", { date: "24 Jan 2026", status: "Current" }),
@@ -84,13 +86,16 @@ export const documents: DocItem[] = [
   d(26, "Office Bearers 2020-21", "/docs/OFFICE-BEARERS-2020-21.pdf", "Notifications", "2021", "PCPA Secretariat", { date: "24 May 2021", status: "Superseded" }),
   d(27, "Office Bearers 2019-2020", A + "office-bearers-2019-20.pdf", "Notifications", "2020", "PCPA Secretariat", { status: "Superseded" }),
   // Policies & rules (reference legislation)
-  d(38, "The Trade Organizations Act, 2013", "/docs/TRADE-ORGANIZATIONS-ACT-2013.pdf", "Policies & Rules", "2013", "Government of Pakistan", { status: "Current" }),
-  d(39, "Trade Organizations Rules, 2013", "/docs/TRADE-ORGANIZATIONS-RULES-2013.pdf", "Policies & Rules", "2013", "Ministry of Commerce", { date: "26 Mar 2013", status: "Current" }),
+  d(38, "The Trade Organizations Act, 2013", "/docs/TRADE-ORGANIZATIONS-ACT-2013.pdf", "Policies & Rules", "2013", "Government of Pakistan", { featured: true, status: "Current" }),
+  d(39, "Trade Organizations Rules, 2013", "/docs/TRADE-ORGANIZATIONS-RULES-2013.pdf", "Policies & Rules", "2013", "Ministry of Commerce", { featured: true, date: "26 Mar 2013", status: "Current" }),
   d(28, "Seed Act 1976", A + "seed-act-1976.pdf", "Policies & Rules", "1976", "Government of Pakistan", { status: "Current" }),
   d(29, "The Seed (Amendment) Act 2015", A + "seed-amendment-act-2015.pdf", "Policies & Rules", "2015", "Government of Pakistan", { status: "Current" }),
   d(30, "The Punjab Cotton Control Rules 1966", A + "punjab-cotton-control-rules-1966.pdf", "Policies & Rules", "1966", "Government of Punjab", { status: "Current" }),
   d(31, "Seed Production – Good Practice (ISF)", A + "seed-production-good-practice-isf.pdf", "Policies & Rules", "", "International Seed Federation", { status: "Current" }),
 ];
+
+/** Featured documents always come first (in the order written above); the rest keep their order. */
+export const documents: DocItem[] = [...all].sort((a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured)));
 
 export const authorities = Array.from(new Set(documents.map((x) => x.authority))).sort();
 export const years = Array.from(new Set(documents.map((x) => x.year).filter(Boolean))).sort().reverse();
