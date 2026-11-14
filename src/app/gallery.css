@@ -142,3 +142,101 @@
 .pc-reldoc-meta { flex: none; font-size: 0.8rem; color: var(--fg-dim); font-variant-numeric: tabular-nums; }
 .pc-reldoc-actions { display: flex; align-items: center; gap: 4px; flex: none; margin-left: auto; }
 .pc-doclist { display: grid; gap: 10px; }
+
+/* ---------- Download Centre: mobile-first UX ---------- */
+.pc-lbl, .pc-filter-toggle { display: none; }
+.pc-more { display: flex; margin: 16px auto 0; }
+.pc-table-wrap { overflow-x: auto; }
+
+@media (max-width: 980px) {
+  /* categories become one swipeable chip strip instead of a tall wrapped block */
+  .pc-dl-cats { background: none; border: 0; padding: 0; margin-inline: -4px; }
+  .pc-dl-cats ul { flex-wrap: nowrap; overflow-x: auto; gap: 8px; padding: 2px 4px 8px; scroll-snap-type: x proximity; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .pc-dl-cats ul::-webkit-scrollbar { display: none; }
+  .pc-dl-cats li { flex: none; scroll-snap-align: start; }
+  .pc-dl-cat { white-space: nowrap; align-items: center; gap: 8px; min-height: 44px; padding: 8px 16px; border: 1px solid var(--line); border-radius: 999px; background: var(--glass-in); }
+  .pc-dl-cat small { font-size: 0.78rem; opacity: 0.8; }
+}
+
+@media (max-width: 760px) {
+  /* a calmer, lighter content card: large blurred panels are what make phone scrolling stutter */
+  .pc-content { padding: 14px; border-radius: 24px; -webkit-backdrop-filter: none; backdrop-filter: none; background: color-mix(in srgb, var(--bg) 90%, transparent); }
+  .pc-dl { gap: 14px; }
+
+  .pc-searchbar { position: sticky; top: 84px; z-index: 5; min-height: 50px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); background: var(--bg); }
+  .pc-searchbar input { font-size: 16px; }
+
+  /* filters tuck away behind one button */
+  .pc-filter-toggle { display: flex; align-items: center; justify-content: space-between; width: 100%; min-height: 46px; padding: 0 16px; border: 1px solid var(--line-strong); border-radius: 14px; background: var(--glass-in); color: var(--fg); font: inherit; font-weight: 600; cursor: pointer; }
+  .pc-filter-toggle svg { transition: transform 0.2s ease; transform: rotate(90deg); }
+  .pc-filter-toggle[aria-expanded="true"] svg { transform: rotate(-90deg); }
+  .pc-filters { display: none; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; align-items: end; }
+  .pc-filters.open { display: grid; }
+  .pc-filters label:nth-child(3) { grid-column: 1 / -1; }
+  .pc-filters .pc-select { width: 100%; min-width: 0; min-height: 46px; font-size: 16px; }
+  .pc-filters .pc-check { min-height: 44px; }
+  .pc-filters .pc-check input { width: 22px; height: 22px; }
+  .pc-filters .pc-btn { min-height: 46px; justify-self: end; }
+
+  /* the table turns into one card per document: no sideways scrolling */
+  .pc-table-wrap { overflow: visible; background: none; border: 0; border-radius: 0; }
+  .pc-table, .pc-table tbody, .pc-table tr, .pc-table td { display: block; width: 100%; }
+  .pc-table thead { display: none; }
+  .pc-table tbody tr { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 14px; padding: 14px 14px 12px; margin-bottom: 10px; border: 1px solid var(--line); border-radius: 18px; background: var(--glass-in); }
+  .pc-table tbody tr:hover { background: var(--glass-in); }
+  .pc-table td { padding: 0; border: 0; }
+  .pc-table td.pc-strong { flex: 1 1 100%; font-size: 1rem; line-height: 1.35; margin-bottom: 4px; }
+  .pc-table td.pc-strong .pc-badge { display: block; width: fit-content; margin: 6px 0 0; }
+  .pc-table td.pc-c-ref, .pc-table td.pc-c-date, .pc-table td.pc-c-cat, .pc-table td.pc-c-type { flex: none; width: auto; font-size: 0.8rem; color: var(--fg-dim); }
+  .pc-table td.pc-right { flex: 1 1 100%; display: flex; gap: 10px; margin-top: 10px; text-align: left; }
+  .pc-table td.pc-right .pc-icon-link { flex: 1; width: auto; height: 46px; border-radius: 14px; gap: 8px; grid-auto-flow: column; justify-content: center; border: 1px solid var(--line-strong); font-weight: 650; font-size: 0.92rem; }
+  .pc-table td.pc-right a.pc-icon-link { background: var(--accent); color: var(--on-accent); border-color: transparent; text-decoration: none; }
+  .pc-table td.pc-right .pc-lbl { display: inline; }
+  .pc-table .pc-empty-cell { padding: 22px 8px !important; }
+
+  .pc-more { width: 100%; justify-content: center; min-height: 50px; }
+  .pc-note { font-size: 0.85rem; }
+}
+
+/* mobile preview: one compact bar, more room for the document */
+@media (max-width: 760px) {
+  .pc-pv-head { flex-wrap: nowrap; flex-direction: column; align-items: stretch; gap: 8px; padding: 10px 12px; }
+  .pc-pv-title strong { font-size: 0.95rem; }
+  .pc-pv-actions { justify-content: space-between; gap: 6px; }
+  .pc-pv-btn { height: 42px; min-width: 42px; flex: 1; }
+  .pc-pv-foot { display: none; }
+  .pc-pv-body { -webkit-overflow-scrolling: touch; }
+  .pc-pv-docx { padding: 8px; }
+  .pc-filters label.pc-check { display: flex; align-items: center; font-size: 0.95rem; color: var(--fg); }
+}
+
+/* ---------- Phones: smoother scrolling and comfortable tap targets ---------- */
+@media (max-width: 760px) {
+  /* many stacked blurred panels are the main cause of choppy scrolling: use solid-ish glass instead */
+  :root { --glass-2: rgba(255, 255, 255, 0.9); --glass-in: rgba(255, 255, 255, 0.72); }
+  [data-theme="dark"] { --glass-2: rgba(20, 32, 26, 0.94); --glass-in: rgba(255, 255, 255, 0.08); }
+  .pc-bento-tile, .pc-panel, .pc-chip, .pc-card, .pc-float, .pc-float-next, .pc-float-stat, .pc-cta-panel, .pc-footer-sheet, .pc-btn, .pc-pill, .pc-localnav-in, .pc-banner-card, .pc-content, .pc-stat, .pc-news, .pc-person, .pc-doclink { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+  /* the aurora backdrop stays, but still and lighter */
+  .pc-aurora i { animation: none !important; will-change: auto; filter: blur(60px); }
+  html { scroll-behavior: auto; }
+
+  /* tap targets of at least 44 px */
+  .pc-iconbtn { width: 44px; height: 44px; }
+  .pc-brand { min-height: 44px; display: inline-flex; align-items: center; }
+  .pc-icon-link { width: 44px; height: 44px; }
+  .pc-pv-chip { height: 44px; padding: 0 16px; }
+  .pc-textlink, .pc-link { min-height: 44px; display: inline-flex; align-items: center; }
+  .pc-footer a { display: inline-block; padding-block: 10px; }
+  .pc-doclink > a, .pc-reldoc-text a { padding-block: 6px; display: inline-block; }
+  .pc-cycle-dots { gap: 4px; }
+  .pc-cycle-dots button { position: relative; }
+  .pc-cycle-dots button::before { content: ""; position: absolute; inset: -18px -10px; }
+  .pc-reldoc { flex-wrap: wrap; }
+  .pc-reldoc-actions { margin-left: auto; }
+}
+@media (max-width: 760px) {
+  .pc-doclink > a, .pc-reldoc-text a { padding-block: 9px; }
+  a[href^="tel:"], a[href^="mailto:"] { display: inline-block; padding-block: 9px; }
+  .pc-badge { font-size: 0.8rem; }
+  .pc-footer h2, .pc-footer h3 { font-size: 0.82rem; }
+}

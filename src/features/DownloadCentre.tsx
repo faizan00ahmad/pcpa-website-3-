@@ -1,11 +1,12 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Icon } from "@/components/Icon";
 import { categories, type DocItem } from "@/content/documents";
 import { DocPreview } from "./DocPreview";
 
 type Doc = DocItem & { size: string };
+const PAGE = 15;
 
 /** Searchable, filterable document list. Superseded documents stay available but are clearly marked. */
 export function DownloadCentre({ docs, initialCategory = "All" }: { docs: Doc[]; initialCategory?: string }) {
@@ -16,6 +17,8 @@ export function DownloadCentre({ docs, initialCategory = "All" }: { docs: Doc[];
   const [auth, setAuth] = useState("All");
   const [showOld, setShowOld] = useState(true);
   const [pv, setPv] = useState<string | null>(null);
+  const [fOpen, setFOpen] = useState(false);
+  const [limit, setLimit] = useState(PAGE);
 
   const years = useMemo(() => Array.from(new Set(docs.map((d) => d.year).filter(Boolean))).sort().reverse(), [docs]);
   const auths = useMemo(() => Array.from(new Set(docs.map((d) => d.authority))).sort(), [docs]);
@@ -37,6 +40,10 @@ export function DownloadCentre({ docs, initialCategory = "All" }: { docs: Doc[];
         (!s || `${d.title} ${d.id} ${d.category} ${d.year} ${d.authority}`.toLowerCase().includes(s)),
     );
   }, [docs, q, cat, year, type, auth, showOld]);
+
+  useEffect(() => setLimit(PAGE), [q, cat, year, type, auth, showOld]);
+  const activeFilters = [year, type, auth].filter((v) => v !== "All").length + (showOld ? 0 : 1);
+  const shown = rows.slice(0, limit);
 
   const pvIndex = pv ? rows.findIndex((d) => d.id === pv) : -1;
   const step = (d: number) => {
@@ -74,7 +81,11 @@ export function DownloadCentre({ docs, initialCategory = "All" }: { docs: Doc[];
           <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search documents by title, subject, year or reference…" aria-label="Search documents" />
         </label>
 
-        <div className="pc-filters">
+        <button type="button" className="pc-filter-toggle" aria-expanded={fOpen} aria-controls="pc-dl-filters" onClick={() => setFOpen((v) => !v)}>
+          <span>Filters{activeFilters ? ` (${activeFilters})` : ""}</span>
+          <Icon name="chevronRight" size={16} />
+        </button>
+        <div id="pc-dl-filters" className={`pc-filters${fOpen ? " open" : ""}`}>
           <label>
             <span>Year</span>
             <select value={year} onChange={(e) => setYear(e.target.value)} className="pc-select">
@@ -114,7 +125,7 @@ export function DownloadCentre({ docs, initialCategory = "All" }: { docs: Doc[];
           {rows.length} of {docs.length} documents
         </p>
 
-        <div className="pc-table-wrap" tabIndex={0} role="region" aria-label="Table, scrollable">
+        <div className="pc-table-wrap">
           <table className="pc-table">
             <thead>
               <tr>
@@ -129,26 +140,28 @@ export function DownloadCentre({ docs, initialCategory = "All" }: { docs: Doc[];
               </tr>
             </thead>
             <tbody>
-              {rows.map((d) => (
+              {shown.map((d) => (
                 <tr key={d.id}>
                   <td className="pc-strong">
                     {d.title}
                     {d.status === "Superseded" && <span className="pc-badge pc-badge-muted">Superseded</span>}
                     {d.status === "Current" && <span className="pc-badge pc-badge-ok">Current</span>}
                   </td>
-                  <td className="pc-mono">{d.id}</td>
-                  <td>{d.date ?? d.year ?? "—"}</td>
-                  <td>{d.category}</td>
-                  <td>
+                  <td className="pc-mono pc-c-ref">{d.id}</td>
+                  <td className="pc-c-date">{d.date ?? d.year ?? "—"}</td>
+                  <td className="pc-c-cat">{d.category}</td>
+                  <td className="pc-c-type">
                     {d.type}
                     {d.size ? ` · ${d.size}` : ""}
                   </td>
                   <td className="pc-right">
                     <button type="button" className="pc-icon-link" aria-label={`Preview ${d.title}`} onClick={() => setPv(d.id)}>
                       <Icon name="eye" size={18} />
+                      <span className="pc-lbl">Preview</span>
                     </button>
                     <a href={d.file} target="_blank" rel="noopener noreferrer" className="pc-icon-link" aria-label={`Download ${d.title}`}>
                       <Icon name="download" size={18} />
+                      <span className="pc-lbl">Download</span>
                     </a>
                   </td>
                 </tr>
@@ -163,6 +176,12 @@ export function DownloadCentre({ docs, initialCategory = "All" }: { docs: Doc[];
             </tbody>
           </table>
         </div>
+
+        {rows.length > shown.length && (
+          <button type="button" className="pc-btn pc-btn-outline pc-more" onClick={() => setLimit((n) => n + PAGE)}>
+            Show more ({rows.length - shown.length} remaining)
+          </button>
+        )}
 
         <p className="pc-note">
           <Icon name="info" size={18} /> Superseded documents remain archived but are clearly marked. The current version is always linked. Use the eye icon to preview a document without leaving the page.
