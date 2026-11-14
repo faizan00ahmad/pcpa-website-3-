@@ -24,6 +24,9 @@ export function Tracker() {
 
   return (
     <div>
+      <p className="pc-note pc-track-note">
+        <Icon name="info" size={18} /> References are checked on the phone or computer you used to submit. To check one from another device, call or email the Secretariat and quote the reference number.
+      </p>
       <form className="pc-card pc-form" onSubmit={lookup} aria-label="Track a reference">
         <h2 className="pc-h3">Track by reference number</h2>
         <div className="pc-field">
@@ -59,7 +62,8 @@ export function Tracker() {
             ))}
           </ol>
           <p className="pc-note">
-            <Icon name="info" size={16} /> Status updates are confirmed by the Secretariat after your email is received.
+            <Icon name="info" size={16} />{" "}
+            {found.sent ? "Sent to the Secretariat. Official status updates come from the Secretariat." : "Not yet confirmed as sent. Send the prepared details to the Secretariat, quoting this reference; the status here does not change on its own."}
           </p>
         </div>
       )}

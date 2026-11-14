@@ -2,21 +2,21 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { PageFrame } from "@/components/PageFrame";
-import { Notice, PersonCard, ToBeUpdated } from "@/components/blocks";
+import { Notice, PersonCard } from "@/components/blocks";
 import { Icon, type IconName } from "@/components/Icon";
 import { RequestForm } from "@/features/RequestForm";
 import { requestForm } from "@/features/forms";
 import { ECTable } from "@/features/ECTable";
-import { ec201920, ecSubtitle, ecTitle } from "@/content/ec-2019-20";
+import { ec201920 } from "@/content/ec-2019-20";
 import { cabinet, executiveDirector, formerChairmen } from "@/content/people";
-import { committeeFields, committees, publicVsConfidential } from "@/content/committees";
+import { committees, publicVsConfidential } from "@/content/committees";
 import { offices } from "@/content/site";
 import { secretariatServices } from "@/content/membership";
 import { RelatedDocs } from "@/components/RelatedDocs";
 
 const pages: Record<string, { title: string; subtitle: string }> = {
   cabinet: { title: "Cabinet", subtitle: "Office bearers of the current term" },
-  "executive-committee": { title: "Executive Committee", subtitle: "Current term and the 2019-20 archive" },
+  "executive-committee": { title: "Executive Committee", subtitle: "2026-2028 term and the 2019-20 archive" },
   committees: { title: "Committees", subtitle: "Standing committees of the Association" },
   "former-chairmen": { title: "Former Chairmen", subtitle: "Chairmen recorded in PCPA documents" },
   secretariat: { title: "Secretariat", subtitle: "Offices, services and requests" },
@@ -55,9 +55,11 @@ export default async function LeadershipPage({ params }: { params: Promise<{ slu
       {slug === "executive-committee" && (
         <>
           <h2 className="pc-h2">Current term (2026-2028)</h2>
-          <Notice>The full list of the newly elected Executive Committee will be published here once PCPA releases it — to be updated.</Notice>
-          <h2 className="pc-h2">{ecTitle}</h2>
-          <p className="pc-muted">{ecSubtitle}</p>
+          <Notice>
+            The member list for the 2026-2028 term has not been published online yet. For the current list, contact the <Link className="pc-link" href="/contact">Secretariat</Link>. The previous term is shown below for reference.
+          </Notice>
+          <h2 className="pc-h2">Previous term: Executive Committee 2019-20</h2>
+          <p className="pc-muted">As published by PCPA after the 2019 election.</p>
           <ECTable rows={ec201920} />
           <RelatedDocs title="Office bearer lists" intro="Archived lists of office bearers." ids={["DL-026", "DL-027"]} />
         </>
@@ -65,7 +67,7 @@ export default async function LeadershipPage({ params }: { params: Promise<{ slu
 
       {slug === "committees" && (
         <>
-          <p className="pc-lead">Committee pages show composition, approved Terms of Reference and meeting schedules once PCPA publishes them.</p>
+          <p className="pc-lead">The standing committees of the Association and the work each one does.</p>
           <div className="pc-accordion">
             {committees.map((c) => (
               <details key={c.slug} className="pc-card pc-details">
@@ -78,14 +80,7 @@ export default async function LeadershipPage({ params }: { params: Promise<{ slu
                 </summary>
                 <div className="pc-details-body">
                   {c.purpose && <p>{c.purpose}</p>}
-                  <dl className="pc-deflist">
-                    {committeeFields.map((f) => (
-                      <div key={f}>
-                        <dt>{f}</dt>
-                        <dd>To be updated</dd>
-                      </div>
-                    ))}
-                  </dl>
+                  <p className="pc-muted">Members, Terms of Reference and meeting schedule are not published online yet. Contact the <Link className="pc-link" href="/contact">Secretariat</Link> for details.</p>
                 </div>
               </details>
             ))}
@@ -119,7 +114,7 @@ export default async function LeadershipPage({ params }: { params: Promise<{ slu
               </tbody>
             </table>
           </div>
-          <ToBeUpdated>Earlier chairmen will be added as the PCPA archive is digitised.</ToBeUpdated>
+          <p className="pc-muted">Only chairmen recorded in PCPA documents are listed. Earlier chairmen are not yet listed online.</p>
           <RelatedDocs title="Office bearer lists" intro="Archived lists of office bearers." ids={["DL-026", "DL-027"]} />
         </>
       )}

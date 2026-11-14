@@ -49,7 +49,6 @@ export default async function ComplaintsSub({ params }: { params: Promise<{ slug
               </li>
             ))}
           </ol>
-          <Notice>Target response times will be published once approved by the Executive Committee — to be updated.</Notice>
         </>
       )}
     </PageFrame>

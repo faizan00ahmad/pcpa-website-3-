@@ -187,7 +187,7 @@
   .pc-table td { padding: 0; border: 0; }
   .pc-table td.pc-strong { flex: 1 1 100%; font-size: 1rem; line-height: 1.35; margin-bottom: 4px; }
   .pc-table td.pc-strong .pc-badge { display: block; width: fit-content; margin: 6px 0 0; }
-  .pc-table td.pc-c-ref, .pc-table td.pc-c-date, .pc-table td.pc-c-cat, .pc-table td.pc-c-type { flex: none; width: auto; font-size: 0.8rem; color: var(--fg-dim); }
+  .pc-table td.pc-c-ref, .pc-table td.pc-c-date, .pc-table td.pc-c-cat, .pc-table td.pc-c-type, .pc-table td.pc-c-meta { flex: none; width: auto; font-size: 0.8rem; color: var(--fg-dim); }
   .pc-table td.pc-right { flex: 1 1 100%; display: flex; gap: 10px; margin-top: 10px; text-align: left; }
   .pc-table td.pc-right .pc-icon-link { flex: 1; width: auto; height: 46px; border-radius: 14px; gap: 8px; grid-auto-flow: column; justify-content: center; border: 1px solid var(--line-strong); font-weight: 650; font-size: 0.92rem; }
   .pc-table td.pc-right a.pc-icon-link { background: var(--accent); color: var(--on-accent); border-color: transparent; text-decoration: none; }
@@ -240,3 +240,42 @@
   .pc-badge { font-size: 0.8rem; }
   .pc-footer h2, .pc-footer h3 { font-size: 0.82rem; }
 }
+
+/* ---------- Critical fixes: forms, slideshow pause, tracker ---------- */
+.pc-cycle-dots button.pc-cycle-pause { width: 28px; height: 28px; margin-right: 6px; display: inline-grid; place-items: center; font-size: 0.6rem; line-height: 1; color: #fff; background: rgba(0, 0, 0, 0.4); }
+.pc-cycle-dots button.pc-cycle-pause:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+.pc-cycle-dots { align-items: center; }
+.pc-copy { background: none; border: 0; font: inherit; cursor: pointer; margin: 0 auto 6px; }
+.pc-actions-stack { flex-direction: column; align-items: stretch; max-width: 340px; margin-inline: auto; }
+.pc-actions-stack .pc-btn { justify-content: center; }
+.pc-small { font-size: 0.85rem; }
+.pc-track-note { margin-bottom: 16px; }
+.pc-success .pc-actions { justify-content: center; }
+.pc-c-sr, .pc-c-line, .pc-c-pill, .pc-c-meta { }
+
+/* ---------- Mobile pass 2: fewer pinned bars, tidier cards, calmer home hero ---------- */
+@media (max-width: 760px) {
+  /* only the header stays pinned; the section tabs scroll away with the page */
+  .pc-localnav { position: static; padding-top: 10px; }
+  .pc-localnav-in { box-shadow: none; }
+
+  /* directory and committee rows as compact cards */
+  .pc-table td.pc-c-sr { display: none; }
+  .pc-table td.pc-c-line { flex: 1 1 100%; font-size: 0.92rem; color: var(--fg-2); order: 3; }
+  .pc-table td.pc-c-pill { flex: none; width: auto; order: 2; font-size: 0.78rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: color-mix(in srgb, var(--accent) 14%, transparent); color: var(--accent); }
+  .pc-table td.pc-strong { order: 1; }
+  .pc-table td.pc-c-meta { order: 4; }
+  .pc-table td.pc-c-meta + td.pc-c-meta::before { content: "·"; margin-right: 10px; }
+  .pc-table tbody tr { gap: 4px 10px; padding: 12px 14px; margin-bottom: 8px; }
+
+  /* home hero: compact label, full-width actions, photo closer to the top */
+  .pc-hero .pc-pill { display: none; }
+  .pc-hero { padding-top: 28px; }
+  .pc-hero-copy h1 { font-size: clamp(2rem, 9.5vw, 2.5rem); }
+  .pc-hero-sub { font-size: 1rem; }
+  .pc-hero-cta { gap: 10px; margin-bottom: 18px; }
+  .pc-hero-cta .pc-btn { flex: 1 1 100%; justify-content: center; }
+  .pc-hero-offices { display: none; }
+  .pc-hero-photo { aspect-ratio: 4 / 3; }
+}
+@media (max-width: 760px) { .pc-cycle-dots button.pc-cycle-pause { position: relative; } .pc-cycle-dots button.pc-cycle-pause::before { inset: -8px; } }

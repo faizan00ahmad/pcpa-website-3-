@@ -36,7 +36,6 @@ export default async function AboutSub({ params }: { params: Promise<{ slug: str
           <div className="pc-split">
             <div>
               <p className="pc-lead">{history}</p>
-              <Notice>A detailed timeline of milestones will be added once PCPA provides its archive — to be updated.</Notice>
             </div>
             <SideFigure src="/images/farm/tractor-wheat-field.jpg" alt="A tractor working a golden wheat field in the morning haze" pos="50% 60%" />
           </div>
@@ -107,7 +106,6 @@ export default async function AboutSub({ params }: { params: Promise<{ slug: str
         </div>
         </>
       )}
-      {slug !== "history" && <Notice>Wording is drafted from public information and is pending review by PCPA.</Notice>}
     </PageFrame>
   );
 }

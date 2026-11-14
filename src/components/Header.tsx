@@ -81,7 +81,7 @@ export function Header() {
             <Icon name="search" size={18} />
           </SearchTrigger>
           <ThemeToggle />
-          <Link href="/portal" className="pc-iconbtn pc-portal-icon" aria-label="Member Portal">
+          <Link href="/portal" className="pc-iconbtn pc-portal-icon" aria-label="Member Portal (preview)" title="Member Portal (preview)">
             <Icon name="user" size={18} />
           </Link>
           <Link href="/membership/apply" className="pc-btn pc-btn-primary pc-btn-sm pc-head-cta">

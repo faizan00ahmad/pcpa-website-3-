@@ -37,3 +37,7 @@ Requires Node 20.9 or newer. Fonts are bundled, so no network access is needed t
 * `src/content/*` – all content (edit here).
 * `src/features/*` – interactive features (download centre, directory, forms, tracker, meetings, portal).
 * `src/components/*` – layout and shared blocks. `src/app/globals.css` – this design's styles.
+
+## Forms
+
+The contact, membership, renewal and complaint forms create a reference number and then deliver the details. Set `NEXT_PUBLIC_FORM_ENDPOINT` (see `.env.example`) to a service that accepts a JSON POST, such as Formspree or Web3Forms, and submissions are sent online. Without it, the visitor is offered email, copy-to-clipboard and a text-file download, and the page says clearly that nothing has been sent yet. Status tracking is local to the device that submitted.

@@ -61,7 +61,7 @@ export function Footer() {
                     <Link href="/complaints">Complaints &amp; Suggestions</Link>
                   </li>
                   <li>
-                    <Link href="/portal">Member Portal</Link>
+                    <Link href="/portal">Member Portal (preview)</Link>
                   </li>
                 </ul>
               </div>

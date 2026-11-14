@@ -52,12 +52,12 @@ export function ECTable({ rows }: { rows: Member[] }) {
           <tbody>
             {list.map((r) => (
               <tr key={`${r.sr}-${r.person}`}>
-                <td>{r.sr}</td>
+                <td className="pc-c-sr">{r.sr}</td>
                 <td className="pc-strong">{r.person}</td>
-                <td>{r.company}</td>
-                <td>{r.cls}</td>
-                <td>{r.designation}</td>
-                <td>{r.area}</td>
+                <td className="pc-c-line">{r.company}</td>
+                <td className="pc-c-meta">{r.cls}</td>
+                <td className="pc-c-pill">{r.designation}</td>
+                <td className="pc-c-meta">{r.area}</td>
               </tr>
             ))}
             {list.length === 0 && (

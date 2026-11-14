@@ -1,20 +1,26 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Icon } from "@/components/Icon";
 import type { DirectoryEntry } from "@/content/directory";
+
+const PAGE = 25;
 
 /** Searchable member directory (company name, class and city only). */
 export function Directory({ entries }: { entries: DirectoryEntry[] }) {
   const [q, setQ] = useState("");
   const [cls, setCls] = useState("All");
   const [city, setCity] = useState("All");
+  const [limit, setLimit] = useState(PAGE);
 
   const cities = useMemo(() => Array.from(new Set(entries.map((e) => e.city))).sort(), [entries]);
   const rows = useMemo(() => {
     const s = q.trim().toLowerCase();
     return entries.filter((e) => (cls === "All" || e.cls === cls) && (city === "All" || e.city === city) && (!s || `${e.company} ${e.city}`.toLowerCase().includes(s)));
   }, [entries, q, cls, city]);
+
+  useEffect(() => setLimit(PAGE), [q, cls, city]);
+  const shown = rows.slice(0, limit);
 
   return (
     <div>
@@ -54,23 +60,19 @@ export function Directory({ entries }: { entries: DirectoryEntry[] }) {
               <th>Company</th>
               <th>Class</th>
               <th>City</th>
-              <th>Status</th>
             </tr>
           </thead>
           <tbody>
-            {rows.map((e, i) => (
+            {shown.map((e, i) => (
               <tr key={`${e.company}-${i}`}>
                 <td className="pc-strong">{e.company}</td>
-                <td>{e.cls}</td>
-                <td>{e.city}</td>
-                <td>
-                  <span className="pc-badge pc-badge-ok">Listed</span>
-                </td>
+                <td className="pc-c-meta">{e.cls}</td>
+                <td className="pc-c-meta">{e.city}</td>
               </tr>
             ))}
             {rows.length === 0 && (
               <tr>
-                <td colSpan={4} className="pc-empty-cell">
+                <td colSpan={3} className="pc-empty-cell">
                   No members match your search.
                 </td>
               </tr>
@@ -78,6 +80,11 @@ export function Directory({ entries }: { entries: DirectoryEntry[] }) {
           </tbody>
         </table>
       </div>
+      {rows.length > shown.length && (
+        <button type="button" className="pc-btn pc-btn-outline pc-more" onClick={() => setLimit((n) => n + PAGE)}>
+          Show more ({rows.length - shown.length} remaining)
+        </button>
+      )}
     </div>
   );
 }

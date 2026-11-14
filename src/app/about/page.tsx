@@ -48,7 +48,6 @@ export default function AboutPage() {
         <Stat value="2" label="Membership classes" />
         <Stat value="2026-28" label="Current Executive Committee term" />
       </div>
-      <Notice>Descriptive text on this page is drafted from public information and is pending review by PCPA.</Notice>
     </PageFrame>
   );
 }

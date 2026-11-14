@@ -47,7 +47,7 @@ export function MeetingsCentre({ rows }: { rows: MeetingRow[] }) {
             {list.length === 0 && (
               <tr>
                 <td colSpan={7} className="pc-empty-cell">
-                  No {tab.toLowerCase()} records have been published online yet — to be updated.
+                  No {tab.toLowerCase()} records have been published online yet. Contact the Secretariat for copies.
                 </td>
               </tr>
             )}
