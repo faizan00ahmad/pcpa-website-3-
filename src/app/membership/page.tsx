@@ -39,7 +39,7 @@ export default function MembershipHub() {
           </tbody>
         </table>
       </div>
-      <RelatedDocs title="Forms to get started" ids={["DL-032", "DL-033", "DL-001"]} />
+      <RelatedDocs title="Forms to get started" ids={["DL-032", "DL-033"]} />
       <Notice>
         See the <Link className="pc-link" href="/membership/fees">full fee schedule and notes</Link>.
       </Notice>

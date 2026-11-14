@@ -48,13 +48,11 @@ export default async function MembershipPage({ params }: { params: Promise<{ slu
           <RelatedDocs
             title="Printable forms and supporting documents"
             intro="Prefer paper, or need the forms for your records? Preview or download them here."
-            ids={["DL-032", "DL-033", "DL-035", "DL-001", "DL-002"]}
+            ids={["DL-032", "DL-033", "DL-035"]}
             notes={{
               "DL-032": "Complete after Coordinator and Chief Coordinator verification",
               "DL-033": "Application together with the authority letter",
               "DL-035": "One signed undertaking for each applicant company",
-              "DL-001": "Membership application form for 2026-2027 (Word)",
-              "DL-002": "Annual subscription notice for 2026-2027",
             }}
           />
         </>
@@ -115,7 +113,6 @@ export default async function MembershipPage({ params }: { params: Promise<{ slu
               </li>
             ))}
           </ul>
-          <RelatedDocs title="Fee documents" ids={["DL-002", "DL-001"]} notes={{ "DL-002": "Annual subscription notice for 2026-2027", "DL-001": "Membership application form for 2026-2027 (Word)" }} />
           <Notice>Please confirm the current fee with the Secretariat before paying — the schedule above follows the approved proposal and may change.</Notice>
         </>
       )}
@@ -139,7 +136,7 @@ export default async function MembershipPage({ params }: { params: Promise<{ slu
       {slug === "renew" && (
         <>
           <RequestForm config={renewForm} />
-          <RelatedDocs title="Documents for renewal" ids={["DL-002", "DL-001"]} notes={{ "DL-002": "Annual subscription notice for 2026-2027", "DL-001": "Membership form for 2026-2027 (Word)" }} />
+          <RelatedDocs title="Forms for the membership file" ids={["DL-032", "DL-033", "DL-035"]} />
         </>
       )}
     </PageFrame>

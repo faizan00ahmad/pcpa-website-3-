@@ -14,7 +14,7 @@ Requires Node 20.9 or newer. Fonts are bundled, so no network access is needed t
 
 ## What is real and what is a placeholder
 
-* Real PCPA data: offices and contacts, Cabinet and Executive Director, Executive Committee 2019-20 archive, election and AGM dates, the 39 documents and their PDFs, and the 77 Corporate members (company, class and city only) from the 2025-26 list.
+* Real PCPA data: offices and contacts, Cabinet and Executive Director, Executive Committee 2019-20 archive, election and AGM dates, the 33 documents and their PDFs, and the 77 Corporate members (company, class and city only) from the 2025-26 list.
 * From the redesign proposal: the membership procedure (Route 1 / Route 2) and the fee schedule. **Confirm the fees with PCPA before relying on them.**
 * Drafted from public information and **pending PCPA review**: About, Vision, Mission, Objectives, Governance and Affiliations wording.
 * Photos: the Photo Gallery (Meetings > Photo Gallery) holds only photographs of PCPA meetings and events. Farm photos supplied for the redesign are used as hero and page-banner images and in a few pages. **Confirm usage rights for the farm photos before going public** (one carried a third-party watermark, which was cropped out; several were small web images and were enlarged, so original high-resolution files would look sharper). Gallery captions are brief descriptions; dates and occasions are to be updated.

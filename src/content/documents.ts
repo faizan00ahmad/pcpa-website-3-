@@ -46,13 +46,6 @@ const d = (
 });
 
 const all: DocItem[] = [
-  // Membership forms and subscription
-  d(1, "Membership Application Form 2026-2027", "/docs/MEMBERSHIP-APPLICATION-2026-2027.docx", "Membership Forms", "2026", "PCPA Secretariat", { date: "Jan 2026", status: "Current" }),
-  d(2, "Annual Subscription of PCPA 2026-2027", "/docs/ANNUAL-SUBSCRIPTION-OF-PCPA-2026-27.pdf", "Membership Forms", "2026", "PCPA Secretariat", { date: "23 Jan 2026", status: "Current" }),
-  d(3, "Annual Subscription of PCPA 2025-2026", A + "annual-subscription-2025-26.pdf", "Membership Forms", "2025", "PCPA Secretariat", { date: "27 Mar 2025", status: "Superseded" }),
-  d(4, "Membership Application 2025-2026", A + "membership-application-2025-26.pdf", "Membership Forms", "2025", "PCPA Secretariat", { date: "27 Mar 2025", status: "Superseded" }),
-  d(5, "PCPA Membership Form (2024)", A + "membership-form-2024.pdf", "Membership Forms", "2024", "PCPA Secretariat", { date: "22 May 2024", status: "Superseded" }),
-  d(6, "PCPA Form (2024)", A + "pcpa-form-2024.pdf", "Membership Forms", "2024", "PCPA Secretariat", { date: "3 Jun 2024", status: "Superseded" }),
   // Membership procedure forms (formats supplied for the new application procedure)
   d(32, "Formal Membership Application", "/docs/PCPA-MEMBERSHIP-APPLICATION.pdf", "Membership Forms", "2026", "PCPA Secretariat", { featured: true, status: "Current" }),
   d(33, "Formal Membership Application with Authority Letter", "/docs/PCPA-MEMBERSHIP-APPLICATION-AND-AUTHORITY.pdf", "Membership Forms", "2026", "PCPA Secretariat", { featured: true, status: "Current" }),
