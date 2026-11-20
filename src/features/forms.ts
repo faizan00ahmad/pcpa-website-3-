@@ -49,22 +49,23 @@ export const applyForm: FormConfig = {
     { name: "mobile", label: "Mobile", type: "tel", required: true },
     { name: "city", label: "City", required: true },
     { name: "activity", label: "Business Activity", type: "select", options: ["Manufacturer / Formulator", "Importer", "Distributor", "Service provider", "Other"], required: true },
-    { name: "route", label: "Application Route", type: "select", options: ["Route 1 – Direct through PCPA Secretariat", "Route 2 – Through Coordinator"], required: true },
-    { name: "address", label: "Registered Address", type: "textarea", required: true },
+    { name: "address", label: "Registered Address", placeholder: "Plot / building, street, area", required: true, wide: true },
     { name: "declaration", label: "I confirm the information is correct and I will submit the required documents.", type: "checkbox", required: true },
   ],
 };
 
 export const renewForm: FormConfig = {
   heading: "Renew Membership",
-  intro: "Update your records and request renewal for the current cycle.",
+  intro: "Enter your membership number first. If it is in the member directory, your company and class are filled in for you.",
   prefix: "REN",
   kind: "Membership renewal",
   submitLabel: "Request Renewal",
   mailSubject: "Membership renewal",
+  lookup: "directory",
+  lookupField: "membership",
   fields: [
+    { name: "membership", label: "Membership No.", placeholder: "e.g. PCPA-C-001", required: true, wide: true },
     { name: "company", label: "Company Name", required: true },
-    { name: "membership", label: "Membership No.", required: true },
     { name: "membership_class", label: "Membership Class", type: "select", options: ["Corporate", "Associate"], required: true },
     { name: "person", label: "Authorized Person", required: true },
     { name: "email", label: "Email", type: "email", required: true },

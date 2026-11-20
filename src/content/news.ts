@@ -1,3 +1,5 @@
+import { sectorNews } from "./news-sector";
+
 export type NewsPost = {
   slug: string;
   path: string;
@@ -8,9 +10,11 @@ export type NewsPost = {
   updated: string;
   image: string;
   paragraphs: string[];
+  /** Where the story was reported; summaries are written by PCPA staff, always link to the original. */
+  source?: { outlet: string; title: string; url: string };
 };
 
-export const news: NewsPost[] = [
+const archive: NewsPost[] = [
   {
     slug: "rationalization-of-power-tariff-for-agri-sector",
     path: "/news/rationalization-of-power-tariff-for-agri-sector",
@@ -46,3 +50,5 @@ export const news: NewsPost[] = [
   },
 ];
 
+/** Newest first: sector reports from the last three months, then the older archive. */
+export const news: NewsPost[] = [...sectorNews, ...archive];

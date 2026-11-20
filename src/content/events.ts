@@ -15,9 +15,8 @@ export type MeetingRow = {
   title: string;
   agenda?: string;
   minutes?: string;
-  decisions?: string;
   status: string;
-  group: "Executive Committee" | "Cabinet Meetings" | "HR Committee" | "AGM / EGM" | "Other Meetings";
+  group: "Executive Committee" | "Cabinet Meetings" | "HR & IT Committee" | "AGM / EGM" | "Other Meetings";
 };
 
 /** Published meeting records. AGM 2026 is the only dated record currently public; others will be added as PCPA publishes them. */
@@ -31,7 +30,7 @@ export const meetings: MeetingRow[] = [
   },
 ];
 
-export const meetingTabs = ["Executive Committee", "Cabinet Meetings", "HR Committee", "AGM / EGM", "Other Meetings"] as const;
+export const meetingTabs = ["Executive Committee", "Cabinet Meetings", "HR & IT Committee", "AGM / EGM", "Other Meetings"] as const;
 
 export const electionStages = [
   { label: "Schedule", status: "Published", date: "15 Jul 2026", done: true },

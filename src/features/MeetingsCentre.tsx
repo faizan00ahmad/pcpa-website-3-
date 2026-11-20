@@ -26,7 +26,6 @@ export function MeetingsCentre({ rows }: { rows: MeetingRow[] }) {
               <th>Meeting</th>
               <th>Agenda</th>
               <th>Minutes</th>
-              <th>Decisions</th>
               <th>Status</th>
             </tr>
           </thead>
@@ -38,7 +37,6 @@ export function MeetingsCentre({ rows }: { rows: MeetingRow[] }) {
                 <td className="pc-strong">{m.title}</td>
                 <td>{m.agenda ? <a href={m.agenda}>Agenda</a> : "—"}</td>
                 <td>{m.minutes ? <a href={m.minutes}>Minutes</a> : "—"}</td>
-                <td>{m.decisions ? <a href={m.decisions}>Decisions</a> : "—"}</td>
                 <td>
                   <span className="pc-badge pc-badge-ok">{m.status}</span>
                 </td>
@@ -46,7 +44,7 @@ export function MeetingsCentre({ rows }: { rows: MeetingRow[] }) {
             ))}
             {list.length === 0 && (
               <tr>
-                <td colSpan={7} className="pc-empty-cell">
+                <td colSpan={6} className="pc-empty-cell">
                   No {tab.toLowerCase()} records have been published online yet. Contact the Secretariat for copies.
                 </td>
               </tr>
@@ -55,7 +53,7 @@ export function MeetingsCentre({ rows }: { rows: MeetingRow[] }) {
         </table>
       </div>
       <p className="pc-note">
-        <Icon name="info" size={16} /> Confidential working papers are not published. Approved public decisions are added here by the Secretariat.
+        <Icon name="info" size={16} /> Confidential working papers are not published.
       </p>
     </div>
   );

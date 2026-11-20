@@ -45,7 +45,7 @@ export const principles = [
 export const governance = [
   { title: "Elected Executive Committee", text: "Members elect the Executive Committee under the Memorandum and Articles of Association; elections are held by an Election Commission." },
   { title: "Cabinet", text: "The Chairman, Senior Vice Chairman, Vice Chairman, Finance Secretary, Legal Secretary and Secretary General lead the Association during the current term." },
-  { title: "Committees", text: "Standing committees (HR, IT, Finance, Legal, Regulatory) support the Executive Committee on specific mandates." },
+  { title: "Committees", text: "Standing committees (HR & IT, Finance, Legal) support the Executive Committee on specific mandates." },
   { title: "Secretariat", text: "The Secretary General's office at Multan, supported by the Lahore office, administers membership, meetings, documents and correspondence." },
   { title: "Annual General Meeting", text: "Members meet at the Annual General Meeting, held at Multan." },
 ];
@@ -62,7 +62,7 @@ export const affiliations = [
 ];
 
 export const history =
-  "PCPA is headquartered at the Industrial Estate, Multan, with an office in Lahore. Its Executive Committee is elected by the members; recent elections were held for the 2019-20 and 2026-2028 terms.";
+  "PCPA is headquartered at the Industrial Estate, Multan, with an office in Lahore. Its Executive Committee is elected by the members; the current Executive Committee was elected for the 2026-2028 term.";
 
 export const keyFacts = [
   "Secretariat at Industrial Estate Phase-I, Multan, with an office in Lahore",

@@ -20,7 +20,7 @@ export function writeStore<T>(key: string, value: T) {
 }
 
 /** Build a mailto: link addressed to the Secretariat. */
-export function mailto(subject: string, lines: string[], to = "multanpcpa@gmail.com") {
+export function mailto(subject: string, lines: string[], to = "info@pcpa.pk") {
   const body = lines.filter(Boolean).join("\n");
   return `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }

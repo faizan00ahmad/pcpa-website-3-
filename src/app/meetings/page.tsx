@@ -5,11 +5,11 @@ import { MeetingsCentre } from "@/features/MeetingsCentre";
 import { keyDates, meetings } from "@/content/events";
 import { Icon } from "@/components/Icon";
 
-export const metadata: Metadata = { title: "Meetings & Decisions" };
+export const metadata: Metadata = { title: "Meetings" };
 
 export default function MeetingsPage() {
   return (
-    <PageFrame title="Meetings & Decisions" subtitle="Notices, minutes and approved decisions" section="meetings" current="/meetings">
+    <PageFrame title="Meetings" subtitle="Notices, agendas and minutes" section="meetings" current="/meetings">
       <h2 className="pc-h2">Key dates</h2>
       <ol className="pc-timeline">
         {keyDates.map((k) => (

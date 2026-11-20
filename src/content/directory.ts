@@ -3,7 +3,7 @@
  * Source: "Corporate Members PCPA for the Year 2025-26" (77 companies), as published by the Secretariat.
  * Associate members will be added when that list is transcribed; until then the Associate PDF remains linked on the page.
  */
-export type DirectoryEntry = { company: string; cls: "Corporate" | "Associate"; city: string };
+export type DirectoryEntry = { company: string; cls: "Corporate" | "Associate"; city: string; no: string; photo?: string };
 
 const corporate: [string, string][] = [
   ["Jullundur (Pvt) Ltd", "Arifwala"],
@@ -85,4 +85,5 @@ const corporate: [string, string][] = [
   ["Green Tec", "Hyderabad"],
 ];
 
-export const directory: DirectoryEntry[] = corporate.map(([company, city]) => ({ company, cls: "Corporate", city }));
+/** `no` and `photo` are DUMMY values for the new card layout: replace with the real membership numbers and photo/logo files (e.g. "/images/members/jullundur.jpg") when supplied. */
+export const directory: DirectoryEntry[] = corporate.map(([company, city], i) => ({ company, cls: "Corporate", city, no: `PCPA-C-${String(i + 1).padStart(3, "0")}` }));

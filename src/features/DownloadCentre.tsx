@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { Highlight } from "@/components/Highlight";
 import { Icon } from "@/components/Icon";
 import { categories, type DocItem } from "@/content/documents";
 import { DocPreview } from "./DocPreview";
@@ -143,13 +144,19 @@ export function DownloadCentre({ docs, initialCategory = "All" }: { docs: Doc[];
               {shown.map((d) => (
                 <tr key={d.id}>
                   <td className="pc-strong">
-                    {d.title}
+                    <Highlight text={d.title} query={q} />
                     {d.status === "Superseded" && <span className="pc-badge pc-badge-muted">Superseded</span>}
-                    {d.status === "Current" && <span className="pc-badge pc-badge-ok">Current</span>}
+                    {d.status === "Latest" && <span className="pc-badge pc-badge-ok">Latest</span>}
                   </td>
-                  <td className="pc-mono pc-c-ref">{d.id}</td>
-                  <td className="pc-c-date">{d.date ?? d.year ?? "—"}</td>
-                  <td className="pc-c-cat">{d.category}</td>
+                  <td className="pc-mono pc-c-ref">
+                    <Highlight text={d.id} query={q} />
+                  </td>
+                  <td className="pc-c-date">
+                    <Highlight text={d.date ?? d.year ?? "—"} query={q} />
+                  </td>
+                  <td className="pc-c-cat">
+                    <Highlight text={d.category} query={q} />
+                  </td>
                   <td className="pc-c-type">
                     {d.type}
                     {d.size ? ` · ${d.size}` : ""}

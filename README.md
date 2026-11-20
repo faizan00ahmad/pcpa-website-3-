@@ -14,11 +14,11 @@ Requires Node 20.9 or newer. Fonts are bundled, so no network access is needed t
 
 ## What is real and what is a placeholder
 
-* Real PCPA data: offices and contacts, Cabinet and Executive Director, Executive Committee 2019-20 archive, election and AGM dates, the 33 documents and their PDFs, and the 77 Corporate members (company, class and city only) from the 2025-26 list.
-* From the redesign proposal: the membership procedure (Route 1 / Route 2) and the fee schedule. **Confirm the fees with PCPA before relying on them.**
+* Real PCPA data: offices and contacts, Cabinet, Executive Committee 2026-2028 (30 members, Corporate and Associate class), election and AGM dates, the 33 documents and their PDFs, and the 77 Corporate members (company, class and city only) from the 2025-26 list.
+* From the redesign proposal: the membership procedure and the fee schedule. **Confirm the fees with PCPA before relying on them.**
 * Drafted from public information and **pending PCPA review**: About, Vision, Mission, Objectives, Governance and Affiliations wording.
 * Photos: the Photo Gallery (Meetings > Photo Gallery) holds only photographs of PCPA meetings and events. Farm photos supplied for the redesign are used as hero and page-banner images and in a few pages. **Confirm usage rights for the farm photos before going public** (one carried a third-party watermark, which was cropped out; several were small web images and were enlarged, so original high-resolution files would look sharper). Gallery captions are brief descriptions; dates and occasions are to be updated.
-* Shown as "to be updated": committee composition, meeting minutes and decisions, the Associate member directory (the PDF is linked), the 2026-28 Executive Committee list.
+* Shown as "to be updated": committee composition, meeting minutes and decisions, the Associate member directory (the PDF is linked).
 
 ## Documents
 
@@ -28,7 +28,7 @@ Requires Node 20.9 or newer. Fonts are bundled, so no network access is needed t
 
 ## Front-end only (no server)
 
-* Forms (membership application, renewal, complaints, suggestions, Secretariat requests, contact) validate, create a reference number such as `PCPA-CMP-2026-12345`, save it on the visitor's device and prepare an email to multanpcpa@gmail.com. Nothing is sent until the visitor sends the email.
+* Forms (membership application, renewal, complaints, suggestions, Secretariat requests, contact) validate, create a reference number such as `PCPA-CMP-2026-12345`, save it on the visitor's device and prepare an email to info@pcpa.pk. Nothing is sent until the visitor sends the email.
 * Track Status looks references up on the same device.
 * Member Portal is a clearly labelled preview: it checks no password and shows no real member data.
 

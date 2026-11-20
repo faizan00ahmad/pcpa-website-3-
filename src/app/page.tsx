@@ -4,7 +4,7 @@ import { Icon, type IconName } from "@/components/Icon";
 import { GalleryStrip } from "@/components/GalleryStrip";
 import { PersonCard } from "@/components/blocks";
 import { PreviewButton } from "@/features/PreviewButton";
-import { PhotoCycle } from "@/components/PhotoCycle";
+import { HeroVideo } from "@/components/HeroVideo";
 import { documents } from "@/content/documents";
 import { keyDates } from "@/content/events";
 import { news } from "@/content/news";
@@ -12,69 +12,31 @@ import { cabinet } from "@/content/people";
 import { offices, site } from "@/content/site";
 
 const services: { title: string; text: string; href: string; cta: string; icon: IconName; tone?: "dark" | "accent"; wide?: boolean }[] = [
-  { title: "Become a member", text: "Two clear routes, a published fee schedule and a certificate on approval.", href: "/membership/apply", cta: "Apply now", icon: "form", tone: "dark", wide: true },
+  { title: "Become a member", text: "A clear procedure, a published fee schedule and a certificate on approval.", href: "/membership/apply", cta: "Apply now", icon: "form", tone: "dark", wide: true },
   { title: "Download centre", text: "Search forms, lists, circulars and records.", href: "/downloads", cta: "Browse", icon: "download" },
-  { title: "Meetings & elections", text: "Key dates, decisions and voter lists.", href: "/meetings", cta: "View", icon: "calendar" },
+  { title: "Meetings & elections", text: "Key dates, meetings and voter lists.", href: "/meetings", cta: "View", icon: "calendar" },
   { title: "Member directory", text: "Find Corporate members by name and city.", href: "/membership/directory", cta: "Search", icon: "users" },
   { title: "Renew membership", text: "Update your records and renew for the year.", href: "/membership/renew", cta: "Renew", icon: "renew" },
   { title: "Complaints & suggestions", text: "Every submission gets a reference number so you can follow its progress.", href: "/complaints", cta: "Submit", icon: "chat", tone: "accent", wide: true },
 ];
 
 export default function Home() {
-  const latest = documents.filter((d) => d.status === "Current").slice(0, 6);
-  const next = keyDates[0];
+  const latest = documents.filter((d) => d.status === "Latest").slice(0, 6);
   return (
     <>
       {/* 1 · Hero */}
-      <section className="pc-hero" aria-label="Welcome">
-        <div className="pc-wrap pc-hero-grid">
-          <div className="pc-hero-copy">
-            <p className="pc-pill">
-              <span className="pc-pill-dot" aria-hidden /> Pakistan Crop Protection Association
-            </p>
-            <h1>Representing Pakistan&apos;s crop protection industry.</h1>
-            <p className="pc-hero-sub">Membership, leadership, meetings, elections and official documents of the Association, all in one place.</p>
-            <div className="pc-hero-cta">
-              <Link href="/membership/apply" className="pc-btn pc-btn-primary">
-                Apply for membership
-              </Link>
-              <Link href="/downloads" className="pc-btn pc-btn-glass">
-                Download centre
-              </Link>
-            </div>
-            <p className="pc-hero-offices">
-              <Icon name="pin" size={16} /> {offices.multan.name} · {offices.lahore.name}
-            </p>
-          </div>
-
-          <div className="pc-hero-visual">
-            <div className="pc-hero-photo">
-              <PhotoCycle
-                dots
-                sizes="(max-width:1000px) 100vw, 600px"
-                slides={[
-                  { src: "/images/farm/tractor-in-mustard-field.jpg", alt: "A tractor on a track between flowering mustard fields at sunset", pos: "50% 55%" },
-                  { src: "/images/farm/tractor-spraying-at-sunset.jpg", alt: "A red tractor spraying a crop at sunset under a dramatic sky", pos: "52% 50%" },
-                  { src: "/images/farm/combine-harvesting-wheat.jpg", alt: "A combine harvester working a golden wheat field under a blue sky", pos: "52% 55%" },
-                  { src: "/images/farm/farmers-inspecting-crops.jpg", alt: "Two farmers inspecting leafy crops at sunrise", pos: "30% 55%" },
-                  { src: "/images/farm/tractor-wheat-field.jpg", alt: "A tractor working a golden wheat field in the morning haze", pos: "50% 60%" },
-                ]}
-              />
-            </div>
-            <Link href={next ? "/meetings" : "/"} className="pc-float pc-float-next">
-              <span className="pc-float-icon">
-                <Icon name="calendar" size={18} />
-              </span>
-              <span>
-                <small>Latest milestone</small>
-                <strong>{next?.title ?? "Meetings & elections"}</strong>
-                <em>{next?.date}</em>
-              </span>
+      <section className="pc-hero pc-hero-full" aria-label="Welcome">
+        <HeroVideo src="/video/hero.mp4" poster="/video/hero-poster.jpg" label="A tour of the PCPA Secretariat office in Multan" />
+        <div className="pc-hero-shade" aria-hidden />
+        <div className="pc-wrap pc-hero-content">
+          <h1 className="pc-sr">Protecting Pakistan&apos;s Crops</h1>
+          <div className="pc-hero-cta">
+            <Link href="/membership/apply" className="pc-btn pc-btn-primary pc-btn-hero">
+              Apply for membership <Icon name="arrow" size={18} />
             </Link>
-            <div className="pc-float pc-float-stat">
-              <strong>{documents.length}+</strong>
-              <span>documents online</span>
-            </div>
+            <Link href="/downloads" className="pc-btn pc-btn-glass pc-btn-hero">
+              Download centre <Icon name="download" size={18} />
+            </Link>
           </div>
         </div>
       </section>
@@ -220,7 +182,7 @@ export default function Home() {
             </Link>
           </header>
           <div className="pc-grid pc-grid-2">
-            {news.map((n) => (
+            {news.slice(0, 4).map((n) => (
               <Link key={n.slug} href={n.path} className="pc-card pc-news">
                 <Image src={n.image} alt="" width={640} height={360} sizes="(max-width:800px) 100vw, 400px" />
                 <div>

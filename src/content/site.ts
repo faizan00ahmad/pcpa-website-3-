@@ -4,11 +4,27 @@ export const site = {
   tagline: "Representing and strengthening Pakistan's crop protection industry",
   description: "Pakistan Crop Protection Association",
   copyright: "© 2026 PCPA – Pakistan Crop Protection Association. All rights reserved.",
-  email: "multanpcpa@gmail.com",
+  email: "info@pcpa.pk",
   phone: "061-6514174",
   mobile: "0347-1415161",
   socials: ["Facebook", "Twitter", "Instagram", "Youtube", "Email"],
 };
+
+/** Social profiles shown as icons in the footer. DUMMY links for now (they open the network's home page): replace each href with PCPA's real page address. A profile with an empty href is hidden. */
+const socialProfiles: { name: string; icon: "facebook" | "instagram"; href: string }[] = [
+  { name: "Facebook", icon: "facebook", href: "https://www.facebook.com/" },
+  { name: "Instagram", icon: "instagram", href: "https://www.instagram.com/" },
+];
+export const socialLinks = socialProfiles.filter((s) => s.href);
+
+/** Official PCPA mailboxes. The addresses below are the proposed ones; each must exist at pcpa.pk before the site goes live. */
+export const officialEmails = [
+  { role: "General enquiries", name: "PCPA Secretariat", email: "info@pcpa.pk" },
+  { role: "Secretary General", name: "Muhammad Ali Raza", email: "secretarygeneral@pcpa.pk" },
+  { role: "Chairman", name: "Office of the Chairman", email: "chairman@pcpa.pk" },
+  { role: "Senior Vice Chairman", name: "Office of the Senior Vice Chairman", email: "seniorvicechairman@pcpa.pk" },
+  { role: "HR & IT Committee", name: "HR & IT Committee", email: "hr@pcpa.pk" },
+];
 
 export const offices = {
   multan: {
@@ -16,7 +32,9 @@ export const offices = {
     address: "PCPA Secretariat, Plot 7 & 8 Commercial Area Phase-I, Industrial Estate, Multan",
     phone: "061-6514174",
     mobile: "0347-1415161",
-    email: "multanpcpa@gmail.com",
+    email: "info@pcpa.pk",
+    /** GPS position of the pin on the Contact page map. APPROXIMATE (taken from a public coordinates listing for Industrial Estate, Multan): confirm on a map and correct if needed. */
+    geo: { lat: 30.128036, lon: 71.386444 },
     contacts: [
       { name: "Muhammad Ali Raza", role: "Secretary General", phone: "0347-1415161" },
       { name: "Muhammad Awais Sarwar", role: "Office Secretary, Multan", phone: "0301-0690606" },
@@ -26,7 +44,9 @@ export const offices = {
     name: "Lahore Office",
     address: "Plot No. 34, 4th Floor, Block E, Commercial Building, Etihad Town, Main Rawind Road, Lahore",
     phone: "0306-0525229",
-    email: "multanpcpa@gmail.com",
+    email: "info@pcpa.pk",
+    /** APPROXIMATE (Raiwind Road, Lahore area): confirm the exact position of the Etihad Town office and correct if needed. */
+    geo: { lat: 31.393806, lon: 74.230122 },
     contacts: [{ name: "Rana Mughees Iqbal", role: "Office Secretary, Lahore", phone: "0306-0525229" }],
   },
 };
@@ -81,7 +101,7 @@ export const nav: NavItem[] = [
     label: "Meetings",
     href: "/meetings",
     children: [
-      { label: "Meetings & Decisions", href: "/meetings" },
+      { label: "Meetings", href: "/meetings" },
       { label: "Elections", href: "/elections" },
       { label: "Photo Gallery", href: "/gallery" },
     ],
@@ -99,7 +119,7 @@ export const sections: Record<string, { title: string; items: { label: string; h
   meetings: {
     title: "Meetings & Elections",
     items: [
-      { label: "Meetings & Decisions", href: "/meetings" },
+      { label: "Meetings", href: "/meetings" },
       { label: "Elections", href: "/elections" },
       { label: "Photo Gallery", href: "/gallery" },
     ],

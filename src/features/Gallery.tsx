@@ -4,13 +4,18 @@ import Image from "next/image";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Icon } from "@/components/Icon";
-import { gallery, galleryCats, type GalleryCat } from "@/content/gallery";
+import { catOf, gallery, galleryCats, galleryEvents, type GalleryCat } from "@/content/gallery";
 
 /** Filterable photo gallery with a keyboard- and swipe-friendly lightbox. */
 export function Gallery() {
   const [cat, setCat] = useState<GalleryCat | "all">("all");
   const [open, setOpen] = useState<number | null>(null);
-  const items = useMemo(() => (cat === "all" ? gallery : gallery.filter((g) => g.cat === cat)), [cat]);
+  /** Albums to show (one per event or meeting, newest first) and the photos in album order, which is also the lightbox order. */
+  const albums = useMemo(() => {
+    const evs = galleryEvents.filter((e) => cat === "all" || e.cat === cat);
+    return evs.map((e) => ({ e, photos: gallery.filter((g) => g.event === e.id) })).filter((a) => a.photos.length > 0);
+  }, [cat]);
+  const items = useMemo(() => albums.flatMap((a) => a.photos), [albums]);
   const opener = useRef<HTMLElement | null>(null);
   const box = useRef<HTMLDivElement>(null);
   const closeBtn = useRef<HTMLButtonElement>(null);
@@ -52,7 +57,7 @@ export function Gallery() {
   }, [isOpen, go]);
 
   const current = open !== null ? items[open] : null;
-  const count = (id: GalleryCat | "all") => (id === "all" ? gallery.length : gallery.filter((g) => g.cat === id).length);
+  const count = (id: GalleryCat | "all") => (id === "all" ? gallery.length : gallery.filter((g) => catOf(g) === id).length);
 
   return (
     <div className="pc-gallery">
@@ -64,24 +69,44 @@ export function Gallery() {
         ))}
       </div>
 
-      <ul className="pc-gal">
-        {items.map((g, i) => (
-          <li key={g.src} className="pc-gal-item">
-            <button
-              type="button"
-              className="pc-gal-btn"
-              aria-label={`Open photo: ${g.caption}`}
-              onClick={(e) => {
-                opener.current = e.currentTarget;
-                setOpen(i);
-              }}
-            >
-              <Image src={g.src} alt={g.alt} width={g.w} height={g.h} sizes="(max-width:600px) 50vw, (max-width:1100px) 33vw, 340px" />
-              <span className="pc-gal-cap">{g.caption}</span>
-            </button>
-          </li>
-        ))}
-      </ul>
+      {albums.map((al) => {
+        const start = items.indexOf(al.photos[0]);
+        return (
+          <section key={al.e.id} className="pc-album" aria-labelledby={`alb-${al.e.id}`}>
+            <header className="pc-album-head">
+              <h2 id={`alb-${al.e.id}`} className="pc-h3">
+                {al.e.title}
+              </h2>
+              <p className="pc-album-meta">
+                <span className={`pc-album-kind ${al.e.cat}`}>{al.e.cat === "meetings" ? "Meeting" : "Event"}</span>
+                {al.e.date ? <time dateTime={al.e.sort}>{al.e.date}</time> : <span className="pc-muted">Date to be added</span>}
+                {al.e.place && <span>{al.e.place}</span>}
+                <span className="pc-muted">
+                  {al.photos.length} photo{al.photos.length === 1 ? "" : "s"}
+                </span>
+              </p>
+            </header>
+            <ul className="pc-gal">
+              {al.photos.map((g, k) => (
+                <li key={g.src} className="pc-gal-item">
+                  <button
+                    type="button"
+                    className="pc-gal-btn"
+                    aria-label={`Open photo: ${al.e.title} – ${g.caption}`}
+                    onClick={(e) => {
+                      opener.current = e.currentTarget;
+                      setOpen(start + k);
+                    }}
+                  >
+                    <Image src={g.src} alt={g.alt} width={g.w} height={g.h} sizes="(max-width:600px) 50vw, (max-width:1100px) 33vw, 340px" />
+                    <span className="pc-gal-cap">{g.caption}</span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </section>
+        );
+      })}
 
       {current &&
         createPortal(
@@ -109,7 +134,8 @@ export function Gallery() {
           <figure className="pc-lb-fig">
             <Image key={current.src} className="pc-lb-img" src={current.src} alt={current.alt} width={current.w} height={current.h} sizes="92vw" priority />
             <figcaption aria-live="polite">
-              <strong>{current.caption}</strong>
+              <strong>{galleryEvents.find((e) => e.id === current.event)?.title}</strong>
+              <em>{current.caption}</em>
               <span>
                 {(open ?? 0) + 1} / {items.length}
               </span>

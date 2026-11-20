@@ -14,7 +14,10 @@ export default function NewsPage() {
           <Link key={n.slug} href={n.path} className="pc-card pc-news">
             <Image src={n.image} alt="" width={640} height={360} sizes="(max-width:800px) 100vw, 400px" />
             <div>
-              <time className="pc-muted">{n.published}</time>
+              <time className="pc-muted">
+                {n.published}
+                {n.source ? ` · ${n.source.outlet}` : ""}
+              </time>
               <h2 className="pc-h4">{n.title}</h2>
               <p className="pc-muted">{n.paragraphs[0].slice(0, 140)}…</p>
             </div>

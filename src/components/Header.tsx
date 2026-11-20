@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { nav } from "@/content/site";
 import { Icon } from "./Icon";
-import { SearchTrigger } from "./SearchDialog";
 import { ThemeToggle } from "./ThemeToggle";
 
 export function Header() {
@@ -34,8 +33,8 @@ export function Header() {
       </a>
       <div className="pc-wrap pc-header-in">
         <Link href="/" className="pc-brand" aria-label="PCPA home">
-          <Image src="/images/brand/favicon.png" alt="" width={30} height={30} priority />
-          <strong>PCPA</strong>
+          <Image src="/images/brand/logo-pcpa.png" alt="PCPA – Pakistan Crop Protection Association" width={64} height={64} priority />
+          <span className="pc-sr">PCPA</span>
         </Link>
 
         <nav className={`pc-nav${open ? " open" : ""}`} aria-label="Main">
@@ -77,9 +76,6 @@ export function Header() {
         </nav>
 
         <div className="pc-brand-actions">
-          <SearchTrigger className="pc-iconbtn" label="Search the site">
-            <Icon name="search" size={18} />
-          </SearchTrigger>
           <ThemeToggle />
           <Link href="/portal" className="pc-iconbtn pc-portal-icon" aria-label="Member Portal (preview)" title="Member Portal (preview)">
             <Icon name="user" size={18} />

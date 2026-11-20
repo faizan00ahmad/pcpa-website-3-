@@ -77,7 +77,7 @@ export function PortalDemo() {
           { t: "Renewals", d: "Renew for the current cycle.", i: "renew" as const, h: "/membership/renew" },
           { t: "Complaints & suggestions", d: "Submit and track references.", i: "chat" as const, h: "/complaints/track" },
           { t: "Documents", d: "Forms, circulars and notifications.", i: "file" as const, h: "/downloads" },
-          { t: "Meetings", d: "Notices and approved decisions.", i: "calendar" as const, h: "/meetings" },
+          { t: "Meetings", d: "Notices, agendas and minutes.", i: "calendar" as const, h: "/meetings" },
           { t: "Elections", d: "Schedule and voter lists.", i: "vote" as const, h: "/elections" },
         ].map((x) => (
           <Link key={x.t} className="pc-card pc-tile" href={x.h}>

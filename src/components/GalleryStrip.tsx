@@ -1,8 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { gallery } from "@/content/gallery";
+import { gallery, galleryEvents } from "@/content/gallery";
 
 const pick = ["/images/slider/slide-08.jpg", "/images/slider/slide-09.jpg", "/images/slider/slide-07.jpg", "/images/slider/slide-11.jpg", "/images/slider/slide-15.jpg"];
+
+const titleOf = (id: string) => galleryEvents.find((e) => e.id === id)?.title ?? "";
 
 /** Home-page preview of the photo gallery: one large photo and four small ones, all linking to /gallery. */
 export function GalleryStrip() {
@@ -10,9 +12,9 @@ export function GalleryStrip() {
   return (
     <div className="pc-strip">
       {items.map((g, i) => (
-        <Link key={g.src} href="/gallery" className={`pc-strip-item${i === 0 ? " pc-strip-lead" : ""}`} aria-label={`Photo gallery: ${g.caption}`}>
+        <Link key={g.src} href="/gallery" className={`pc-strip-item${i === 0 ? " pc-strip-lead" : ""}`} aria-label={`Photo gallery: ${titleOf(g.event)}`}>
           <Image src={g.src} alt={g.alt} fill sizes={i === 0 ? "(max-width:800px) 100vw, 600px" : "(max-width:800px) 50vw, 300px"} />
-          <span className="pc-strip-cap">{g.caption}</span>
+          <span className="pc-strip-cap">{titleOf(g.event)}</span>
         </Link>
       ))}
     </div>

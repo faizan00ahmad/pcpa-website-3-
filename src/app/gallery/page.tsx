@@ -7,9 +7,9 @@ export const metadata: Metadata = { title: "Photo Gallery" };
 export default function GalleryPage() {
   return (
     <PageFrame title="Photo Gallery" subtitle="Meetings and events of the Association" section="meetings" current="/gallery">
-      <p className="pc-lead">Photographs from PCPA meetings, ceremonies and events. Select any photo to view it larger.</p>
+      <p className="pc-lead">Photographs from PCPA meetings, ceremonies and events, organised into albums by event or meeting. Select any photo to view it larger.</p>
       <Gallery />
-      <p className="pc-muted pc-gal-note">Captions are short descriptions of each photo.</p>
+      <p className="pc-muted pc-gal-note">Captions are short descriptions of each photo. Album dates are added as the Secretariat confirms them.</p>
     </PageFrame>
   );
 }

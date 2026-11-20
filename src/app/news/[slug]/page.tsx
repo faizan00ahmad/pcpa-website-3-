@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Icon } from "@/components/Icon";
 import { PageFrame } from "@/components/PageFrame";
 import { news } from "@/content/news";
 
@@ -24,6 +25,17 @@ export default async function NewsPost({ params }: { params: Promise<{ slug: str
         {post.paragraphs.map((p, i) => (
           <p key={i}>{p}</p>
         ))}
+        {post.source && (
+          <p className="pc-note">
+            <Icon name="info" size={18} />
+            <span>
+              Summary prepared from the original report: {post.source.outlet}, &ldquo;{post.source.title}&rdquo;, {post.published}.{" "}
+              <a className="pc-link" href={post.source.url} target="_blank" rel="noopener noreferrer">
+                Read the full article <Icon name="external" size={14} />
+              </a>
+            </span>
+          </p>
+        )}
         <p className="pc-muted">Last updated {post.updated}</p>
         <Link className="pc-link" href="/news">
           ← All news

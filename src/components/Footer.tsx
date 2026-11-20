@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { nav, offices, site } from "@/content/site";
+import { nav, offices, site, socialLinks } from "@/content/site";
 import { Icon } from "./Icon";
 
 export function Footer() {
@@ -11,8 +11,7 @@ export function Footer() {
           <div className="pc-footer-main">
             <div className="pc-footer-brand">
               <Link href="/" className="pc-brand" aria-label="PCPA home">
-                <Image src="/images/brand/favicon.png" alt="" width={36} height={36} />
-                <strong>PCPA</strong>
+                <Image src="/images/brand/logo-pcpa.png" alt="PCPA – Pakistan Crop Protection Association" width={72} height={72} />
               </Link>
               <p>{site.fullName}</p>
               <ul className="pc-footer-contact">
@@ -26,6 +25,17 @@ export function Footer() {
                   <Icon name="mail" size={15} /> <a href={`mailto:${site.email}`}>{site.email}</a>
                 </li>
               </ul>
+              {socialLinks.length > 0 && (
+                <ul className="pc-social" aria-label="PCPA on social media">
+                  {socialLinks.map((s) => (
+                    <li key={s.name}>
+                      <a href={s.href} target="_blank" rel="noopener noreferrer" aria-label={`PCPA on ${s.name}`} title={s.name}>
+                        <Icon name={s.icon} size={20} />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
             <div className="pc-footer-cols">
               {nav

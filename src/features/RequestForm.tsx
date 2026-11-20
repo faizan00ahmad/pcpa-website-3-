@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Icon } from "@/components/Icon";
+import { directory } from "@/content/directory";
 import { mailto, makeRef, readStore, writeStore } from "@/lib/util";
 
 export type FieldDef = {
@@ -24,6 +25,9 @@ export type FormConfig = {
   submitLabel: string;
   mailSubject: string;
   confidentialNote?: string;
+  /** "directory": the field named `lookupField` is a membership number; a match in the member directory fills in the member's details. */
+  lookup?: "directory";
+  lookupField?: string;
 };
 
 export type StoredRecord = { ref: string; kind: string; createdAt: string; status: string; summary: string; sent?: boolean };
@@ -40,6 +44,34 @@ export function RequestForm({ config, defaults = {} }: { config: FormConfig; def
   const [result, setResult] = useState<{ ref: string; href: string; text: string; sent: boolean; failed: boolean } | null>(null);
   const [busy, setBusy] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [match, setMatch] = useState<{ ok: boolean; text: string } | null>(null);
+  const filled = useRef(false);
+
+  /** Membership number typed: look it up in the member directory and fill the related fields. */
+  function onChange(e: React.FormEvent<HTMLFormElement>) {
+    const t = e.target as HTMLInputElement;
+    if (config.lookup !== "directory" || t.name !== (config.lookupField ?? "membership")) return;
+    const form = e.currentTarget;
+    const value = t.value.trim().toUpperCase().replace(/\s+/g, "");
+    const set = (name: string, v: string) => {
+      const el = form.elements.namedItem(name) as HTMLInputElement | HTMLSelectElement | null;
+      if (el) el.value = v;
+    };
+    const found = value ? directory.find((d) => d.no.toUpperCase() === value) : undefined;
+    if (found) {
+      set("company", found.company);
+      set("membership_class", found.cls);
+      filled.current = true;
+      setMatch({ ok: true, text: `Member found: ${found.company} · ${found.cls} · ${found.city}. Details filled in below.` });
+    } else {
+      if (filled.current) {
+        set("company", "");
+        set("membership_class", "");
+        filled.current = false;
+      }
+      setMatch(value.length >= 5 ? { ok: false, text: "No member found with this number. Check it, or fill in the details below by hand." } : null);
+    }
+  }
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -73,6 +105,8 @@ export function RequestForm({ config, defaults = {} }: { config: FormConfig; def
     writeStore(RECORDS_KEY, [{ ref, kind: config.kind, createdAt: new Date().toISOString(), status: "Received", summary, sent }, ...records].slice(0, 50));
     setResult({ ref, href: mailto(`${config.kind} ${ref}`, lines), text: lines.join("\n"), sent, failed });
     form.reset();
+    filled.current = false;
+    setMatch(null);
   }
 
   async function copy(text: string) {
@@ -137,7 +171,7 @@ export function RequestForm({ config, defaults = {} }: { config: FormConfig; def
   }
 
   return (
-    <form className="pc-card pc-form" onSubmit={onSubmit} aria-label={config.heading}>
+    <form className="pc-card pc-form" onSubmit={onSubmit} onChange={onChange} aria-label={config.heading}>
       <h2 className="pc-h3">{config.heading}</h2>
       {config.intro && <p className="pc-muted">{config.intro}</p>}
       {config.confidentialNote && (
@@ -180,6 +214,11 @@ export function RequestForm({ config, defaults = {} }: { config: FormConfig; def
                     <input {...common} type={type} className="pc-input" placeholder={fd.placeholder} autoComplete="off" />
                   )}
                   {fd.help && <small className="pc-help">{fd.help}</small>}
+                  {config.lookup && fd.name === (config.lookupField ?? "membership") && match && (
+                    <small className={`pc-lookup ${match.ok ? "ok" : "miss"}`} role="status">
+                      {match.text}
+                    </small>
+                  )}
                 </>
               )}
             </div>

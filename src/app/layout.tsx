@@ -3,7 +3,6 @@ import localFont from "next/font/local";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Motion } from "@/components/Motion";
-import { SearchDialog } from "@/components/SearchDialog";
 import "./globals.css";
 import "./liquid.css";
 import "./motion.css";
@@ -46,7 +45,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
         </main>
         <Footer />
-        <SearchDialog />
         <Motion glow />
       </body>
     </html>

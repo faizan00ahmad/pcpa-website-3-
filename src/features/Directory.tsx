@@ -1,10 +1,14 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { Highlight } from "@/components/Highlight";
 import { Icon } from "@/components/Icon";
 import type { DirectoryEntry } from "@/content/directory";
 
-const PAGE = 25;
+const PAGE = 24;
+
+/** Up to two initials, shown until a member photo or logo is supplied. */
+const initials = (name: string) => name.replace(/[^A-Za-z0-9 ]/g, " ").split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0].toUpperCase()).join("");
 
 /** Searchable member directory (company name, class and city only). */
 export function Directory({ entries }: { entries: DirectoryEntry[] }) {
@@ -16,7 +20,7 @@ export function Directory({ entries }: { entries: DirectoryEntry[] }) {
   const cities = useMemo(() => Array.from(new Set(entries.map((e) => e.city))).sort(), [entries]);
   const rows = useMemo(() => {
     const s = q.trim().toLowerCase();
-    return entries.filter((e) => (cls === "All" || e.cls === cls) && (city === "All" || e.city === city) && (!s || `${e.company} ${e.city}`.toLowerCase().includes(s)));
+    return entries.filter((e) => (cls === "All" || e.cls === cls) && (city === "All" || e.city === city) && (!s || `${e.company} ${e.city} ${e.no}`.toLowerCase().includes(s)));
   }, [entries, q, cls, city]);
 
   useEffect(() => setLimit(PAGE), [q, cls, city]);
@@ -53,33 +57,33 @@ export function Directory({ entries }: { entries: DirectoryEntry[] }) {
       <p className="pc-count" aria-live="polite">
         {rows.length} of {entries.length} members
       </p>
-      <div className="pc-table-wrap" tabIndex={0} role="region" aria-label="Table, scrollable">
-        <table className="pc-table">
-          <thead>
-            <tr>
-              <th>Company</th>
-              <th>Class</th>
-              <th>City</th>
-            </tr>
-          </thead>
-          <tbody>
-            {shown.map((e, i) => (
-              <tr key={`${e.company}-${i}`}>
-                <td className="pc-strong">{e.company}</td>
-                <td className="pc-c-meta">{e.cls}</td>
-                <td className="pc-c-meta">{e.city}</td>
-              </tr>
-            ))}
-            {rows.length === 0 && (
-              <tr>
-                <td colSpan={3} className="pc-empty-cell">
-                  No members match your search.
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
+      {rows.length === 0 ? (
+        <p className="pc-empty-cell">No members match your search.</p>
+      ) : (
+        <ul className="pc-mcards">
+          {shown.map((e) => (
+            <li key={e.no} className="pc-mcard">
+              <span className="pc-mcard-photo">
+                {e.photo ? <img src={e.photo} alt="" loading="lazy" /> : <span aria-hidden>{initials(e.company)}</span>}
+              </span>
+              <span className="pc-mcard-body">
+                <strong className="pc-mcard-name">
+                  <Highlight text={e.company} query={q} />
+                </strong>
+                <span className="pc-mcard-no">
+                  <Highlight text={e.no} query={q} />
+                </span>
+                <span className="pc-mcard-meta">
+                  <span className="pc-mcard-class">{e.cls}</span>
+                  <span>
+                    <Highlight text={e.city} query={q} />
+                  </span>
+                </span>
+              </span>
+            </li>
+          ))}
+        </ul>
+      )}
       {rows.length > shown.length && (
         <button type="button" className="pc-btn pc-btn-outline pc-more" onClick={() => setLimit((n) => n + PAGE)}>
           Show more ({rows.length - shown.length} remaining)

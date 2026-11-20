@@ -10,13 +10,13 @@ import { RequestForm } from "@/features/RequestForm";
 import { applyForm, renewForm } from "@/features/forms";
 import { directory } from "@/content/directory";
 import { documents } from "@/content/documents";
-import { fees, routes } from "@/content/membership";
+import { fees, procedureSteps } from "@/content/membership";
 import { withSizes } from "@/lib/docs";
 import { RelatedDocs } from "@/components/RelatedDocs";
 
 const pages: Record<string, { title: string; subtitle: string }> = {
   apply: { title: "Apply for Membership", subtitle: "Start your application" },
-  procedure: { title: "Membership Procedure", subtitle: "Two routes to membership" },
+  procedure: { title: "Membership Procedure", subtitle: "Steps to membership" },
   fees: { title: "Membership Fees", subtitle: "Approved schedule" },
   forms: { title: "Forms & Documents", subtitle: "Printable forms and lists" },
   directory: { title: "Member Directory", subtitle: "Companies listed as PCPA members" },
@@ -41,7 +41,7 @@ export default async function MembershipPage({ params }: { params: Promise<{ slu
       {slug === "apply" && (
         <>
           <Notice>
-            Not sure which route applies? Read the <Link className="pc-link" href="/membership/procedure">Membership Procedure</Link>. Download the printable form from{" "}
+            Want to know the steps first? Read the <Link className="pc-link" href="/membership/procedure">Membership Procedure</Link>. Download the printable form from{" "}
             <Link className="pc-link" href="/membership/forms">Forms &amp; Documents</Link>.
           </Notice>
           <RequestForm config={applyForm} />
@@ -60,23 +60,18 @@ export default async function MembershipPage({ params }: { params: Promise<{ slu
 
       {slug === "procedure" && (
         <>
-          {routes.map((r) => (
-            <section key={r.id} className="pc-card">
-              <h2 className="pc-h3">{r.title}</h2>
-              <p className="pc-muted">{r.intro}</p>
-              <Steps steps={r.steps} />
-            </section>
-          ))}
+          <section className="pc-card">
+            <Steps steps={procedureSteps} />
+          </section>
           <Notice>Pay the membership fee only after preliminary clearance of your application.</Notice>
           <RelatedDocs
             title="Forms used in the procedure"
             intro="The formats used at each stage of processing a membership application."
-            ids={["DL-034", "DL-032", "DL-033", "DL-036", "DL-037", "DL-035"]}
+            ids={["DL-034", "DL-032", "DL-033", "DL-037", "DL-035"]}
             notes={{
               "DL-034": "MEM-01 and MEM-02 · Joint sheet for the Regional Coordinator and Chief Coordinator",
               "DL-032": "Filed after Coordinator and Chief Coordinator verification",
               "DL-033": "Application together with the authority letter",
-              "DL-036": "MEM-03 and MEM-04 · Secretary General records documents received; Finance verification",
               "DL-037": "MEM-05 · Membership admission decision record",
               "DL-035": "One signed undertaking for each applicant company",
             }}
@@ -125,7 +120,7 @@ export default async function MembershipPage({ params }: { params: Promise<{ slu
             <Notice tone="alert">The searchable directory is being compiled from the official Corporate and Associate member lists. Meanwhile, open the PDFs below.</Notice>
           ) : (
             <>
-              <Notice>Corporate members (2025-26 list) are searchable below. The Associate members list is available as a PDF below.</Notice>
+              <Notice>Corporate members (2025-26 list) are searchable below. Membership numbers and photos shown here are placeholders until the real ones are supplied. The Associate members list is available as a PDF below.</Notice>
               <Directory entries={directory} />
             </>
           )}
