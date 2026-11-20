@@ -18,7 +18,6 @@ export const categories = [
   "Member Lists",
   "Policies & Rules",
   "Circulars",
-  "Notifications",
   "Meeting Documents",
   "HR & IT Committee",
   "Election Documents",
@@ -73,9 +72,6 @@ const all: DocItem[] = [
   d(23, "Nominees 2019", A + "nominees-2019.pdf", "Election Documents", "2019", "Election Commission", { status: "Superseded" }),
   d(24, "List of Candidates 2019", A + "list-of-candidates-2019.pdf", "Election Documents", "2019", "Election Commission", { status: "Superseded" }),
   d(25, "Provisional Results – Reserve Seat for Women (2019)", A + "provisional-results-reserve-seat-women-2019.pdf", "Election Documents", "2019", "Election Commission", { status: "Superseded" }),
-  // Notifications (office bearer lists)
-  d(26, "Office Bearers 2020-21", "/docs/OFFICE-BEARERS-2020-21.pdf", "Notifications", "2021", "PCPA Secretariat", { date: "24 May 2021", status: "Superseded" }),
-  d(27, "Office Bearers 2019-2020", A + "office-bearers-2019-20.pdf", "Notifications", "2020", "PCPA Secretariat", { status: "Superseded" }),
   // Policies & rules (reference legislation)
   d(38, "The Trade Organizations Act, 2013", "/docs/TRADE-ORGANIZATIONS-ACT-2013.pdf", "Policies & Rules", "2013", "Government of Pakistan", { featured: true, status: "Latest" }),
   d(39, "Trade Organizations Rules, 2013", "/docs/TRADE-ORGANIZATIONS-RULES-2013.pdf", "Policies & Rules", "2013", "Ministry of Commerce", { featured: true, date: "26 Mar 2013", status: "Latest" }),
