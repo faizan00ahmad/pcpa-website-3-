@@ -9,7 +9,7 @@ export const cabinet: Person[] = [
   { name: "Iftikhar Ahmad", title: "Vice Chairman", image: "/images/leaders/iftikhar-ahmad.jpg" },
   { name: "Muhammad Farooq", title: "Finance Secretary", image: "/images/leaders/farooq-hasnain.jpg" },
   { name: "Asfand Raiz Gorya", title: "Legal Secretary", image: "/images/leaders/asfand-goraya.jpg" },
-  { name: "Mr. Muhammad Ali Raza", title: "Secretary General", image: "/images/leaders/ali-raza.webp" },
+  { name: "Muhammad Ali Raza", title: "Secretary General", image: "/images/leaders/ali-raza.webp" },
 ];
 
 /** Chairmen recorded in PCPA documents and public records. Earlier terms are being added to the archive. */
