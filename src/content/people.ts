@@ -8,7 +8,7 @@ export const cabinet: Person[] = [
   { name: "Muhammad Altaf Shahid", title: "Senior Vice Chairman", image: "/images/leaders/altaf-shahid.jpg" },
   { name: "Iftikhar Ahmad", title: "Vice Chairman", image: "/images/leaders/iftikhar-ahmad.jpg" },
   { name: "Muhammad Farooq", title: "Finance Secretary", image: "/images/leaders/farooq-hasnain.jpg" },
-  { name: "Asfand Raiz Gorya", title: "Legal Secretary", image: "/images/leaders/asfand-goraya.jpg" },
+  { name: "Asfand Riaz Gorya", title: "Legal Secretary", image: "/images/leaders/asfand-goraya.jpg" },
   { name: "Muhammad Ali Raza", title: "Secretary General", image: "/images/leaders/ali-raza.webp" },
 ];
 
