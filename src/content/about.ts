@@ -4,7 +4,7 @@
  */
 
 export const intro =
-  "The Pakistan Crop Protection Association (PCPA) brings together companies engaged in manufacturing, distribution and related services in Pakistan's crop protection sector. It represents members and coordinates with government, regulators and stakeholders for the growth of the country's agriculture.";
+  "The Pakistan Crop Protection Association (PCPA) brings together companies engaged in the manufacturing, distribution and related services of Pakistan's crop protection sector. It represents its members and works with government, regulators and stakeholders for the growth of the country's agriculture.";
 
 export const vision = "A modern, credible and responsible crop protection industry supporting sustainable agricultural growth.";
 export const mission =
@@ -13,22 +13,22 @@ export const mission =
 export const objectives = [
   {
     title: "Industry Representation",
-    text: "Give crop protection companies a united voice before chambers of commerce, government departments and industry bodies.",
+    text: "Gives crop protection companies a united voice before chambers of commerce, government departments and industry bodies.",
     icon: "users",
   },
   {
     title: "Regulatory Coordination",
-    text: "Engage constructively with authorities on registration, trade and import policy that affects the sector.",
+    text: "Engages constructively with the authorities on the registration, trade and import policies that affect the sector.",
     icon: "shield",
   },
   {
     title: "Responsible Agriculture",
-    text: "Promote responsible, professional practice so farmers can protect their crops safely and sustainably.",
+    text: "Promotes responsible, professional practice so that farmers can protect their crops safely and sustainably.",
     icon: "leaf",
   },
   {
     title: "Member Services",
-    text: "Run membership, elections, meetings and records transparently, with clear procedures for every member.",
+    text: "Runs membership, elections, meetings and records transparently, with clear procedures for every member.",
     icon: "doc",
   },
 ];
@@ -65,8 +65,8 @@ export const history =
   "PCPA is headquartered at the Industrial Estate, Multan, with an office in Lahore. Its Executive Committee is elected by the members; the current Executive Committee was elected for the 2026-2028 term.";
 
 export const keyFacts = [
-  "Secretariat at Industrial Estate Phase-I, Multan, with an office in Lahore",
-  "Members join as Corporate or Associate members",
-  "Executive Committee elected for each term; most recent election cycle: 2026-2028",
-  "Annual General Meeting held at Multan (AGM 2026 on 3 October 2026)",
+  "The Secretariat is at Industrial Estate Phase-I, Multan, with an office in Lahore.",
+  "Members join as Corporate or Associate members.",
+  "The Executive Committee is elected for each term; the most recent election cycle is 2026-2028.",
+  "The Annual General Meeting is held at Multan (AGM 2026 on 3 October 2026).",
 ];

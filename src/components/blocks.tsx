@@ -51,8 +51,8 @@ export function InfoCard({ title, text, icon }: { title: string; text: string; i
   );
 }
 
-export function PersonCard({ p, large = false }: { p: Person; large?: boolean }) {
-  return (
+export function PersonCard({ p, large = false, href }: { p: Person; large?: boolean; href?: string }) {
+  const card = (
     <article className={`pc-card pc-person${large ? " pc-person-lg" : ""}`}>
       <div className="pc-person-photo">
         <Image src={p.image} alt={p.name} width={320} height={320} sizes="(max-width:700px) 50vw, 240px" />
@@ -60,6 +60,13 @@ export function PersonCard({ p, large = false }: { p: Person; large?: boolean })
       <h3>{p.name}</h3>
       <p>{p.title}</p>
     </article>
+  );
+  return href ? (
+    <Link href={href} className="pc-person-link">
+      {card}
+    </Link>
+  ) : (
+    card
   );
 }
 

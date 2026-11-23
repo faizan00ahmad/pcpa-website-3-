@@ -14,6 +14,7 @@ export const sectorNews: NewsPost[] = [
     published: "November 18, 2026",
     updated: "November 18, 2026",
     image: "/images/farm/farmer-spreading-fertiliser.jpg",
+    tag: "Inputs & supply",
     paragraphs: [
       "Farmers in Vehari district are reporting difficulty obtaining certified seed and fertilizer for the 2026-27 Rabi wheat season, according to ProPakistani. Farmers also allege hoarding, inflated prices and weak market monitoring; these are their claims as reported, not findings by an authority.",
       "The district has a wheat target of 465,000 acres, of which Mailsi accounts for 159,000, Vehari 156,000 and Burewala 150,000. The target for the whole Multan division is 1.776 million acres, up 16,000 acres from last year.",
@@ -35,6 +36,7 @@ export const sectorNews: NewsPost[] = [
     published: "October 29, 2026",
     updated: "October 29, 2026",
     image: "/images/farm/farmers-inspecting-crops.jpg",
+    tag: "Regulation",
     paragraphs: [
       "CABI has announced a new initiative, \"Strengthening Market and Regulatory Capacity for Feed Sector and Biopesticides in Pakistan\", carried out with Ag Aligned Global.",
       "The work has three strands: knowledge and regulation of feed ingredients, livestock nutrition and feed formulation, and putting Pakistan's biopesticide registration framework into practice. An inception meeting with USDA-FAS reviewed priorities and plans, and CABI's Executive Director for Asia, Dr Babar Bajwa, spoke of moving from inception to implementation.",
@@ -56,6 +58,7 @@ export const sectorNews: NewsPost[] = [
     published: "October 24, 2026",
     updated: "October 24, 2026",
     image: "/images/news/spraying.jpg",
+    tag: "Testing labs",
     paragraphs: [
       "Federal Minister for National Food Security and Research Rana Tanveer Hussain inaugurated two upgraded laboratories in Karachi, Profit reported: the Central Plant Quarantine Laboratory and the Federal Pesticides Testing and Reference Laboratory.",
       "The quarantine laboratory is meant to identify pests and diseases linked to imported commodities. The pesticides laboratory is meant to verify active ingredients and identify substandard agricultural chemicals. Representatives of the University of Karachi and two research institutes attended.",
@@ -76,7 +79,9 @@ export const sectorNews: NewsPost[] = [
     author: "Global Agriculture (summary)",
     published: "September 28, 2026",
     updated: "September 28, 2026",
-    image: "/images/news/agriculture-economy.png",
+    image: "/images/stock/pest-on-corn-leaf.jpg",
+    tag: "Trade data",
+    stat: "+53%",
     paragraphs: [
       "Pakistan's insecticide imports rose 53.40% in value in July and August 2026, the first two months of fiscal year 2027, based on Pakistan Bureau of Statistics data reported by Global Agriculture.",
       "Volume rose to 6,931 tonnes worth $35.469 million, from 4,013 tonnes worth $23.122 million a year earlier. The wider agricultural and other chemicals group rose 9.03% to $1.910 billion.",

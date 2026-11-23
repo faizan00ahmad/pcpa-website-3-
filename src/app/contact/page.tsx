@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { PageFrame } from "@/components/PageFrame";
 import { Icon } from "@/components/Icon";
+import { Avatar } from "@/components/ProfileCards";
 import { ContactMap } from "@/features/ContactMap";
 import { RequestForm } from "@/features/RequestForm";
 import { contactForm } from "@/features/forms";
-import { officialEmails, offices, site } from "@/content/site";
+import { officialEmails, offices, site, socialLinks } from "@/content/site";
 
 export const metadata: Metadata = { title: "Contact" };
 
@@ -56,7 +57,6 @@ export default function ContactPage() {
       <div className="pc-contact-main">
         <div className="pc-contact-form">
           <RequestForm config={contactForm} />
-          <p className="pc-muted">Your message is prepared as an email to {site.email}; nothing is sent until you press send in your email app.</p>
         </div>
         <aside className="pc-card pc-contactcard" aria-labelledby="who-to-write">
           <h2 id="who-to-write" className="pc-h3">
@@ -76,14 +76,27 @@ export default function ContactPage() {
           <p className="pc-contactcard-line">
             <Icon name="phone" size={16} /> Mobile <a href={tel(site.mobile)}>{site.mobile}</a>
           </p>
+          {socialLinks.length > 0 && (
+            <div className="pc-follow">
+              <h3 className="pc-h4">Follow PCPA</h3>
+              <p className="pc-actions">
+                {socialLinks.map((l) => (
+                  <a key={l.name} className={`pc-btn pc-btn-social pc-btn-${l.name.toLowerCase()}`} href={l.href} target="_blank" rel="noopener noreferrer">
+                    <Icon name={l.icon} size={18} /> {l.name}
+                  </a>
+                ))}
+              </p>
+            </div>
+          )}
         </aside>
       </div>
+      <p className="pc-muted pc-form-note">Your message is prepared as an email to {site.email}; nothing is sent until you press send in your email app.</p>
 
       {/* 3 · Offices */}
       <h2 className="pc-h2">Our offices</h2>
       <div className="pc-grid pc-grid-2">
         {[offices.multan, offices.lahore].map((o) => (
-          <section key={o.name} className="pc-card pc-office">
+          <section key={o.name} className="pc-card pc-office pc-office-card">
             <header className="pc-office-head">
               <span className="pc-icon">
                 <Icon name="building" size={22} />
@@ -93,19 +106,23 @@ export default function ContactPage() {
                 <p className="pc-muted">{o.address}</p>
               </div>
             </header>
-            <ul className="pc-contact-list">
-              <li>
-                <Icon name="phone" size={18} /> <a href={tel(o.phone)}>{o.phone}</a>
-              </li>
+            <ul className="pc-office-people">
               {o.contacts.map((c) => (
                 <li key={c.name}>
-                  <Icon name="user" size={18} />
-                  <span>
-                    <strong>{c.name}</strong> · {c.role} · <a href={tel(c.phone)}>{c.phone}</a>
-                  </span>
+                  <Avatar name={c.name} size={48} />
+                  <div>
+                    <strong>{c.name}</strong>
+                    <span>{c.role}</span>
+                  </div>
+                  <a className="pc-btn pc-btn-outline pc-btn-sm" href={tel(c.phone)} aria-label={`Call ${c.name}`}>
+                    <Icon name="phone" size={14} /> {c.phone}
+                  </a>
                 </li>
               ))}
             </ul>
+            <p className="pc-office-main">
+              <Icon name="phone" size={16} /> Office line <a href={tel(o.phone)}>{o.phone}</a>
+            </p>
           </section>
         ))}
       </div>

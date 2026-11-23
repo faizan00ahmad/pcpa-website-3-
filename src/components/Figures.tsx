@@ -34,16 +34,17 @@ export const photoSets = {
   about: [
     { src: farm("threshing-in-dust"), alt: "Workers threshing grain in the morning dust" },
     { src: farm("harvest-at-sunset"), alt: "Farmers handling straw beside a thresher at sunset" },
-    { src: farm("tractor-and-field-workers"), alt: "A red tractor and farm workers in a field" },
+    { src: farm("sunset-over-fields"), alt: "The sun setting over green fields and a farm track" },
   ],
   objectives: [
-    { src: farm("combine-harvester-grain"), alt: "A combine harvester pouring wheat grain into a trailer", pos: "50% 40%" },
-    { src: farm("tractor-at-sunset"), alt: "A tractor ploughing beneath a red sun", pos: "50% 60%" },
-    { src: farm("sunset-over-fields"), alt: "The sun setting over green fields and a farm track" },
+    { src: "/images/stock/crop-spraying-drip.jpg", alt: "Crop protection product applied carefully to a young potato crop" },
+    { src: "/images/stock/seedling-planting.jpg", alt: "A farmer's hand planting a seedling in the soil" },
+    { src: "/images/stock/iot-pest-detection.jpg", alt: "A corn leaf damaged by pests, with smart-farming data around it" },
   ],
   membership: [
     { src: farm("farmers-inspecting-crops"), alt: "Two farmers inspecting leafy crops at sunrise", pos: "30% 55%" },
-    { src: farm("tractor-spraying-at-sunset"), alt: "A red tractor spraying a crop at sunset", pos: "50% 55%" },
-    { src: farm("tractor-in-mustard-field"), alt: "A tractor on a track between flowering mustard fields", pos: "50% 50%" },
+    { src: farm("sunset-over-fields"), alt: "The sun setting over green fields and a farm track" },
+    { src: farm("harvest-at-sunset"), alt: "Farmers handling straw beside a thresher at sunset" },
   ],
+
 } satisfies Record<string, Photo[]>;

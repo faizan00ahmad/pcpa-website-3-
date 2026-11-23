@@ -19,6 +19,7 @@ export const categories = [
   "Policies & Rules",
   "Circulars",
   "Meeting Documents",
+  "Notifications",
   "HR & IT Committee",
   "Election Documents",
 ] as const;
@@ -75,6 +76,8 @@ const all: DocItem[] = [
   // Policies & rules (reference legislation)
   d(38, "The Trade Organizations Act, 2013", "/docs/TRADE-ORGANIZATIONS-ACT-2013.pdf", "Policies & Rules", "2013", "Government of Pakistan", { featured: true, status: "Latest" }),
   d(39, "Trade Organizations Rules, 2013", "/docs/TRADE-ORGANIZATIONS-RULES-2013.pdf", "Policies & Rules", "2013", "Ministry of Commerce", { featured: true, date: "26 Mar 2013", status: "Latest" }),
+  d(40, "Trade Organizations Rules, 2013 (Updated) – FPCCI circular", "/docs/TRADE-ORGANIZATIONS-RULES-2013-UPDATED.pdf", "Policies & Rules", "2025", "FPCCI / DGTO", { featured: true, date: "22 Sep 2025", status: "Latest" }),
+  d(41, "Office Bearers 2026-28 – Election Result Notification", "/docs/OFFICE-BEARERS-2026-28.pdf", "Notifications", "2026", "PCPA Secretariat", { featured: true, date: "30 Sep 2026", status: "Latest" }),
   d(28, "Seed Act 1976", A + "seed-act-1976.pdf", "Policies & Rules", "1976", "Government of Pakistan", { status: "Latest" }),
   d(29, "The Seed (Amendment) Act 2015", A + "seed-amendment-act-2015.pdf", "Policies & Rules", "2015", "Government of Pakistan", { status: "Latest" }),
   d(30, "The Punjab Cotton Control Rules 1966", A + "punjab-cotton-control-rules-1966.pdf", "Policies & Rules", "1966", "Government of Punjab", { status: "Latest" }),

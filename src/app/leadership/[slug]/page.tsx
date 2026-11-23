@@ -4,12 +4,14 @@ import Link from "next/link";
 import { PageFrame } from "@/components/PageFrame";
 import { Notice } from "@/components/blocks";
 import { ProfileCards } from "@/components/ProfileCards";
+import { CabinetCards } from "@/components/CabinetCards";
 import { Icon, type IconName } from "@/components/Icon";
 import { RequestForm } from "@/features/RequestForm";
 import { requestForm } from "@/features/forms";
 import { ECTable } from "@/features/ECTable";
 import { ecAssociate, ecCorporate, ecDeclared } from "@/content/ec-2026-28";
-import { cabinet, formerChairmen } from "@/content/people";
+import { cabinet } from "@/content/people";
+import { ChairmenCatalog } from "@/components/ChairmenCatalog";
 import { committees, publicVsConfidential } from "@/content/committees";
 import { offices } from "@/content/site";
 import { secretariatServices } from "@/content/membership";
@@ -22,7 +24,7 @@ const pages: Record<string, { title: string; subtitle: string }> = {
   cabinet: { title: "Cabinet", subtitle: "Office bearers of the current term" },
   "executive-committee": { title: "Executive Committee", subtitle: "Members of the 2026-2028 term" },
   committees: { title: "Committees", subtitle: "Standing committees of the Association" },
-  "former-chairmen": { title: "Former Chairmen", subtitle: "Chairmen recorded in PCPA documents" },
+  "former-chairmen": { title: "Former Chairmen", subtitle: "Chairmen of the Association, 2008 to today" },
   secretariat: { title: "Secretariat", subtitle: "Offices, services and requests" },
 };
 
@@ -44,7 +46,13 @@ export default async function LeadershipPage({ params }: { params: Promise<{ slu
       {slug === "cabinet" && (
         <>
           <h2 className="pc-sr">Cabinet</h2>
-          <ProfileCards large label="Cabinet" items={cabinet.map((p) => ({ name: p.name, role: p.title, photo: p.image }))} />
+          <CabinetCards people={cabinet} />
+          <RelatedDocs
+            title="Latest office bearers list"
+            intro="The notification announcing the 2026-28 office bearers. Preview it here or download the PDF."
+            ids={["DL-041"]}
+            notes={{ "DL-041": "Election result for 2026-28 and the complete list of office bearers · 30 Sep 2026" }}
+          />
         </>
       )}
 
@@ -82,12 +90,7 @@ export default async function LeadershipPage({ params }: { params: Promise<{ slu
 
       {slug === "former-chairmen" && (
         <>
-          <ProfileCards
-            large
-            label="Former chairmen"
-            items={formerChairmen.map((c) => ({ name: c.name, role: `Chairman · ${c.term}`, photo: c.photo, lines: [c.org, c.source].filter(Boolean) }))}
-          />
-          <p className="pc-muted">Only chairmen recorded in PCPA documents are listed so far. Photos and earlier chairmen are added as the Secretariat supplies them.</p>
+          <ChairmenCatalog />
         </>
       )}
 

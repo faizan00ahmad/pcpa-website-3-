@@ -72,7 +72,7 @@ export function Gallery() {
       {albums.map((al) => {
         const start = items.indexOf(al.photos[0]);
         return (
-          <section key={al.e.id} className="pc-album" aria-labelledby={`alb-${al.e.id}`}>
+          <section key={al.e.id} id={al.e.id} className="pc-album" aria-labelledby={`alb-${al.e.id}`}>
             <header className="pc-album-head">
               <h2 id={`alb-${al.e.id}`} className="pc-h3">
                 {al.e.title}

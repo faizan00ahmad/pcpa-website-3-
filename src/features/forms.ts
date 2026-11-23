@@ -101,7 +101,7 @@ export const contactForm: FormConfig = {
   fields: [
     { name: "person", label: "Name", required: true },
     { name: "contact", label: "Email", type: "email", required: true },
-    { name: "subject", label: "Subject" },
+    { name: "subject", label: "Subject", wide: true },
     { name: "description", label: "Your message", type: "textarea", required: true },
   ],
 };

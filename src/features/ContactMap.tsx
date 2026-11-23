@@ -9,8 +9,9 @@ type Place = { id: string; name: string; address: string; lat: number; lon: numb
 export function ContactMap({ places }: { places: Place[] }) {
   const [id, setId] = useState(places[0].id);
   const p = places.find((x) => x.id === id) ?? places[0];
-  const d = 0.012;
-  const src = `https://www.openstreetmap.org/export/embed.html?bbox=${p.lon - d},${p.lat - d / 2},${p.lon + d},${p.lat + d / 2}&layer=mapnik&marker=${p.lat},${p.lon}`;
+  const [sat, setSat] = useState(false);
+  /** Google Maps embed by coordinates: needs no API key. `t=k` is the satellite view. */
+  const src = `https://www.google.com/maps?q=${p.lat},${p.lon}&z=17&hl=en&output=embed${sat ? "&t=k" : ""}`;
   const coords = `${p.lat.toFixed(6)}, ${p.lon.toFixed(6)}`;
   return (
     <section className="pc-map" aria-label="Office locations map">
@@ -21,8 +22,16 @@ export function ContactMap({ places }: { places: Place[] }) {
           </button>
         ))}
       </div>
+      <div className="pc-gal-tabs" role="group" aria-label="Map view">
+        <button type="button" className={`pc-tab${!sat ? " active" : ""}`} aria-pressed={!sat} onClick={() => setSat(false)}>
+          Map
+        </button>
+        <button type="button" className={`pc-tab${sat ? " active" : ""}`} aria-pressed={sat} onClick={() => setSat(true)}>
+          Satellite
+        </button>
+      </div>
       <div className="pc-map-frame">
-        <iframe key={p.id} title={`Map: ${p.name}`} src={src} loading="lazy" referrerPolicy="no-referrer" />
+        <iframe key={`${p.id}-${sat}`} title={`Map: ${p.name}`} src={src} loading="lazy" referrerPolicy="no-referrer-when-downgrade" allowFullScreen />
       </div>
       <div className="pc-map-info">
         <p>
@@ -35,8 +44,8 @@ export function ContactMap({ places }: { places: Place[] }) {
           <a className="pc-btn pc-btn-primary pc-btn-sm" target="_blank" rel="noopener noreferrer" href={`https://www.google.com/maps/dir/?api=1&destination=${p.lat},${p.lon}`}>
             Get directions <Icon name="external" size={14} />
           </a>
-          <a className="pc-btn pc-btn-outline pc-btn-sm" target="_blank" rel="noopener noreferrer" href={`https://www.openstreetmap.org/?mlat=${p.lat}&mlon=${p.lon}#map=17/${p.lat}/${p.lon}`}>
-            Open larger map <Icon name="external" size={14} />
+          <a className="pc-btn pc-btn-outline pc-btn-sm" target="_blank" rel="noopener noreferrer" href={`https://www.google.com/maps/search/?api=1&query=${p.lat},${p.lon}`}>
+            Open in Google Maps <Icon name="external" size={14} />
           </a>
         </p>
       </div>

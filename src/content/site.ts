@@ -17,12 +17,15 @@ const socialProfiles: { name: string; icon: "facebook" | "instagram"; href: stri
 ];
 export const socialLinks = socialProfiles.filter((s) => s.href);
 
-/** Official PCPA mailboxes. The addresses below are the proposed ones; each must exist at pcpa.pk before the site goes live. */
+/** Official PCPA mailboxes (as created by the Secretariat), in order of seniority. Passwords are never stored in the site. */
 export const officialEmails = [
   { role: "General enquiries", name: "PCPA Secretariat", email: "info@pcpa.pk" },
+  { role: "Chairman", name: "Muhammad Mushtaq Ahmad", email: "chairman@pcpa.pk" },
+  { role: "Senior Vice Chairman", name: "Muhammad Altaf Shahid", email: "sr.vicechairman@pcpa.pk" },
+  { role: "Vice Chairman", name: "Iftikhar Ahmad", email: "vicechairman@pcpa.pk" },
   { role: "Secretary General", name: "Muhammad Ali Raza", email: "secretarygeneral@pcpa.pk" },
-  { role: "Chairman", name: "Office of the Chairman", email: "chairman@pcpa.pk" },
-  { role: "Senior Vice Chairman", name: "Office of the Senior Vice Chairman", email: "seniorvicechairman@pcpa.pk" },
+  { role: "Finance Secretary", name: "Muhammad Farooq", email: "finance@pcpa.pk" },
+  { role: "Legal Secretary", name: "Asfand Riaz Gorya", email: "legal@pcpa.pk" },
   { role: "HR & IT Committee", name: "HR & IT Committee", email: "hr@pcpa.pk" },
 ];
 
@@ -33,7 +36,7 @@ export const offices = {
     phone: "061-6514174",
     mobile: "0347-1415161",
     email: "info@pcpa.pk",
-    /** GPS position of the pin on the Contact page map. APPROXIMATE (taken from a public coordinates listing for Industrial Estate, Multan): confirm on a map and correct if needed. */
+    /** GPS position of the pin on the Contact page map. APPROXIMATE: replace with the exact pin (Google Maps: long-press the office entrance, copy the coordinates). */
     geo: { lat: 30.128036, lon: 71.386444 },
     contacts: [
       { name: "Muhammad Ali Raza", role: "Secretary General", phone: "0347-1415161" },

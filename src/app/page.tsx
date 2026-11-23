@@ -3,10 +3,10 @@ import Link from "next/link";
 import { Icon, type IconName } from "@/components/Icon";
 import { GalleryStrip } from "@/components/GalleryStrip";
 import { PersonCard } from "@/components/blocks";
+import { NewsCard } from "@/components/NewsCard";
 import { PreviewButton } from "@/features/PreviewButton";
 import { HeroVideo } from "@/components/HeroVideo";
 import { documents } from "@/content/documents";
-import { keyDates } from "@/content/events";
 import { news } from "@/content/news";
 import { cabinet } from "@/content/people";
 import { offices, site } from "@/content/site";
@@ -21,7 +21,7 @@ const services: { title: string; text: string; href: string; cta: string; icon: 
 ];
 
 export default function Home() {
-  const latest = documents.filter((d) => d.status === "Latest").slice(0, 6);
+  const latest = documents.filter((d) => d.status === "Latest").slice(0, 3);
   return (
     <>
       {/* 1 · Hero */}
@@ -65,33 +65,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3 · At a glance */}
-      <section className="pc-section pc-section-tight">
-        <div className="pc-wrap">
-          <div className="pc-panel pc-panel-green">
-            <h2 className="pc-h2">PCPA at a glance.</h2>
-            <div className="pc-statrow">
-              <div className="pc-chip">
-                <strong>2</strong>
-                <span>Offices – Multan &amp; Lahore</span>
-              </div>
-              <div className="pc-chip">
-                <strong>2</strong>
-                <span>Membership classes</span>
-              </div>
-              <div className="pc-chip">
-                <strong>2026-28</strong>
-                <span>Executive Committee term</span>
-              </div>
-              <div className="pc-chip">
-                <strong>{documents.length}+</strong>
-                <span>Documents online</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* 4 · Leadership */}
       <section className="pc-section">
         <div className="pc-wrap">
@@ -106,7 +79,7 @@ export default function Home() {
           </header>
           <div className="pc-grid pc-grid-6 pc-people">
             {cabinet.map((p) => (
-              <PersonCard key={p.name} p={p} />
+              <PersonCard key={p.name} p={p} href="/leadership/cabinet" />
             ))}
           </div>
         </div>
@@ -118,7 +91,7 @@ export default function Home() {
           <header className="pc-sec-head pc-sec-head-row">
             <div>
               <p className="pc-eyebrow">Gallery</p>
-              <h2 className="pc-h2">Meetings, events and the fields.</h2>
+              <h2 className="pc-h2">Meetings and events.</h2>
             </div>
             <Link href="/gallery" className="pc-textlink">
               View all photos <Icon name="chevronRight" size={16} />
@@ -128,31 +101,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6 · Dates and documents */}
+      {/* 6 · Latest documents */}
       <section className="pc-section pc-section-tight">
-        <div className="pc-wrap pc-two">
-          <div className="pc-panel">
-            <header className="pc-sec-head-row">
-              <h2 className="pc-h3">Key dates</h2>
-              <Link href="/meetings" className="pc-textlink">
-                All <Icon name="chevronRight" size={16} />
-              </Link>
-            </header>
-            <ol className="pc-timeline">
-              {keyDates.map((k) => (
-                <li key={k.sort}>
-                  <time dateTime={k.sort}>{k.date}</time>
-                  <strong>{k.title}</strong>
-                </li>
-              ))}
-            </ol>
-          </div>
+        <div className="pc-wrap">
           <div className="pc-panel">
             <header className="pc-sec-head-row">
               <h2 className="pc-h3">Latest documents</h2>
-              <Link href="/downloads" className="pc-textlink">
-                All <Icon name="chevronRight" size={16} />
-              </Link>
             </header>
             <ul className="pc-doclist">
               {latest.map((d) => (
@@ -165,6 +119,11 @@ export default function Home() {
                 </li>
               ))}
             </ul>
+            <p className="pc-actions pc-seemore">
+              <Link href="/downloads" className="pc-btn pc-btn-outline">
+                See more <Icon name="arrow" size={16} />
+              </Link>
+            </p>
           </div>
         </div>
       </section>
@@ -181,15 +140,9 @@ export default function Home() {
               All news <Icon name="chevronRight" size={16} />
             </Link>
           </header>
-          <div className="pc-grid pc-grid-2">
+          <div className="pc-ncards pc-ncards-scroll">
             {news.slice(0, 4).map((n) => (
-              <Link key={n.slug} href={n.path} className="pc-card pc-news">
-                <Image src={n.image} alt="" width={640} height={360} sizes="(max-width:800px) 100vw, 400px" />
-                <div>
-                  <time className="pc-muted">{n.published}</time>
-                  <h3 className="pc-h4">{n.title}</h3>
-                </div>
-              </Link>
+              <NewsCard key={n.slug} n={n} />
             ))}
           </div>
         </div>

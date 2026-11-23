@@ -9,6 +9,10 @@ export type NewsPost = {
   published: string;
   updated: string;
   image: string;
+  /** Short topic label shown on the photo (e.g. "Regulation"). */
+  tag?: string;
+  /** Optional headline figure shown large on the photo (e.g. "+53%"). */
+  stat?: string;
   paragraphs: string[];
   /** Where the story was reported; summaries are written by PCPA staff, always link to the original. */
   source?: { outlet: string; title: string; url: string };
@@ -23,7 +27,8 @@ const archive: NewsPost[] = [
     author: "waqas",
     published: "January 19, 2020",
     updated: "March 26, 2025",
-    image: "/images/news/spraying.jpg",
+    image: "/images/farm/aerial-tractor-green-field.jpg",
+    tag: "Energy",
     paragraphs: [
       "Prime Minister Imran Khan announced Agriculture Emergency Program to provide relief to the farmers . So far various steps have been taken to translate the relief in various forms and manner.",
       "To that effect a meeting was organized on December 24 , Advisor to Prime Minister on Finance, Dr. Hafeez Sheikh chaired a meeting regarding Power Tariff in agriculture sector. Federal Minister for National Food Security & Research Makhdoom Khusro Bakhtiar, Mr. Omar Ayub Federal Minister for Energy, Federal Secretaries of Ministry Power, Finance and National Food Security attended the meeting.",
@@ -41,7 +46,8 @@ const archive: NewsPost[] = [
     author: "waqas",
     published: "January 19, 2020",
     updated: "January 19, 2020",
-    image: "/images/news/agriculture-economy.png",
+    image: "/images/farm/sunset-over-fields.jpg",
+    tag: "Fertilizer",
     paragraphs: [
       "To discuss the matters regarding availability of urea & DAP for Rabi season, Federal Minister Khusro Bakhtiar has called a meeting on Monday.",
       "There have been concerns regarding high prices of urea and DAP, hence the meeting is convened to discuss the subject matter. Meeting notices to that effect are issued to urea manufacturers and DAP importers. The subject meeting will be chaired by the Federal Minister for Planning & Development.",

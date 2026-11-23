@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PageFrame } from "@/components/PageFrame";
 import { InfoCard, Notice } from "@/components/blocks";
-import { PhotoStrip, SideFigure, photoSets } from "@/components/Figures";
+import { PhotoStrip, photoSets } from "@/components/Figures";
+import { AboutMore, InfoRows, Statement } from "@/components/AboutBits";
 import { RelatedDocs } from "@/components/RelatedDocs";
 import { affiliations, governance, history, mission, objectives, principles, vision } from "@/content/about";
 
@@ -32,21 +33,15 @@ export default async function AboutSub({ params }: { params: Promise<{ slug: str
   return (
     <PageFrame title={meta.title} subtitle={meta.subtitle} section="about" current={href}>
       {slug === "history" && (
-        <>
-          <div className="pc-split">
-            <div>
-              <p className="pc-lead">{history}</p>
-            </div>
-            <SideFigure src="/images/farm/tractor-wheat-field.jpg" alt="A tractor working a golden wheat field in the morning haze" pos="50% 60%" />
-          </div>
-        </>
+        <Statement tag="Our story" src="/images/slider/slide-15.jpg" alt="Members meeting around the table at the PCPA Secretariat" pos="50% 50%">
+          <p className="pc-statement-lead">{history}</p>
+        </Statement>
       )}
       {slug === "vision" && (
         <>
-          <div className="pc-split pc-split-center">
-            <blockquote className="pc-quote">{vision}</blockquote>
-            <SideFigure src="/images/farm/farmer-spreading-fertiliser.jpg" alt="A farmer scattering fertiliser across a young wheat field" pos="50% 25%" />
-          </div>
+          <Statement tag="Our vision" src="/images/stock/seedling-smart-farming.jpg" alt="A young seedling in the soil, with smart-farming icons around it" pos="50% 55%">
+            <blockquote className="pc-statement-quote">{vision}</blockquote>
+          </Statement>
           <h2 className="pc-h2">What guides us</h2>
           <div className="pc-grid pc-grid-3">
             {principles.map((p) => (
@@ -57,10 +52,9 @@ export default async function AboutSub({ params }: { params: Promise<{ slug: str
       )}
       {slug === "mission" && (
         <>
-          <div className="pc-split pc-split-center">
-            <blockquote className="pc-quote">{mission}</blockquote>
-            <SideFigure src="/images/farm/tractor-in-mustard-field.jpg" alt="A tractor on a track between flowering mustard fields at sunset" pos="50% 50%" />
-          </div>
+          <Statement tag="Our mission" src="/images/stock/farmer-tablet.jpg" alt="A farmer checking his crop with a tablet" pos="50% 50%">
+            <blockquote className="pc-statement-quote">{mission}</blockquote>
+          </Statement>
           <h2 className="pc-h2">How we deliver</h2>
           <div className="pc-grid pc-grid-2">
             {objectives.map((o) => (
@@ -83,11 +77,7 @@ export default async function AboutSub({ params }: { params: Promise<{ slug: str
       {slug === "governance" && (
         <>
         <h2 className="pc-sr">Governance</h2>
-        <div className="pc-grid pc-grid-2">
-          {governance.map((g) => (
-            <InfoCard key={g.title} title={g.title} text={g.text} />
-          ))}
-        </div>
+        <InfoRows items={governance} />
         <RelatedDocs
           title="Legal framework"
           intro="The law and rules that govern trade organisations in Pakistan."
@@ -106,6 +96,7 @@ export default async function AboutSub({ params }: { params: Promise<{ slug: str
         </div>
         </>
       )}
+      <AboutMore current={href} />
     </PageFrame>
   );
 }

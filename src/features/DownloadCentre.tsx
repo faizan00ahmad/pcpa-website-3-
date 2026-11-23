@@ -67,7 +67,7 @@ export function DownloadCentre({ docs, initialCategory = "All" }: { docs: Doc[];
         <ul>
           {["All", ...categories].map((c) => (
             <li key={c}>
-              <button type="button" className={`pc-dl-cat${cat === c ? " active" : ""}`} onClick={() => setCat(c)} aria-pressed={cat === c}>
+              <button type="button" className={`pc-dl-cat${cat === c ? " active" : ""}${(counts[c] ?? 0) === 0 ? " empty" : ""}`} onClick={() => setCat(c)} aria-pressed={cat === c}>
                 <span>{c === "All" ? "All Documents" : c}</span>
                 <small>{counts[c] ?? 0}</small>
               </button>
@@ -133,7 +133,7 @@ export function DownloadCentre({ docs, initialCategory = "All" }: { docs: Doc[];
                 <th>Document Name</th>
                 <th>Ref.</th>
                 <th>Date</th>
-                <th>Category</th>
+                <th className="pc-c-cat-h">Category</th>
                 <th>Type</th>
                 <th className="pc-right">
                   <span className="pc-sr">Preview and download</span>
@@ -144,7 +144,10 @@ export function DownloadCentre({ docs, initialCategory = "All" }: { docs: Doc[];
               {shown.map((d) => (
                 <tr key={d.id}>
                   <td className="pc-strong">
-                    <Highlight text={d.title} query={q} />
+                    <span className="pc-dl-title">
+                      <Highlight text={d.title} query={q} />
+                    </span>
+                    <span className="pc-dl-pill">{d.category}</span>
                     {d.status === "Superseded" && <span className="pc-badge pc-badge-muted">Superseded</span>}
                     {d.status === "Latest" && <span className="pc-badge pc-badge-ok">Latest</span>}
                   </td>
