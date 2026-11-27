@@ -12,7 +12,9 @@ import { ECTable } from "@/features/ECTable";
 import { ecAssociate, ecCorporate, ecDeclared } from "@/content/ec-2026-28";
 import { cabinet } from "@/content/people";
 import { ChairmenCatalog } from "@/components/ChairmenCatalog";
-import { committees, publicVsConfidential } from "@/content/committees";
+import { committeeDocs, publicVsConfidential } from "@/content/committees";
+import { CommitteeList } from "@/components/CommitteeList";
+import { SeeMore } from "@/features/SeeMore";
 import { offices } from "@/content/site";
 import { secretariatServices } from "@/content/membership";
 import { RelatedDocs } from "@/components/RelatedDocs";
@@ -23,7 +25,7 @@ const svcIcon: Record<string, IconName> = { membership: "users", meeting: "calen
 const pages: Record<string, { title: string; subtitle: string }> = {
   cabinet: { title: "Cabinet", subtitle: "Office bearers of the current term" },
   "executive-committee": { title: "Executive Committee", subtitle: "Members of the 2026-2028 term" },
-  committees: { title: "Committees", subtitle: "Standing committees of the Association" },
+  committees: { title: "Committees", subtitle: "Committees of the Association, 2026-28" },
   "former-chairmen": { title: "Former Chairmen", subtitle: "Chairmen of the Association, 2008 to today" },
   secretariat: { title: "Secretariat", subtitle: "Offices, services and requests" },
 };
@@ -73,18 +75,13 @@ export default async function LeadershipPage({ params }: { params: Promise<{ slu
 
       {slug === "committees" && (
         <>
-          <p className="pc-lead">The standing committees of the Association and the work each one does.</p>
-          <ProfileCards
-            large
-            label="Committees"
-            items={committees.map((c) => ({
-              name: c.name,
-              icon: c.icon as IconName,
-              lines: [c.purpose || "Members, Terms of Reference and meeting schedule will be published here."],
-            }))}
-          />
+          <p className="pc-lead">Choose a committee to see its convener and members for the 2026-28 term.</p>
+          <CommitteeList />
           <Notice>{publicVsConfidential}</Notice>
-          <RelatedDocs title="Committee documents" ids={["DL-037"]} notes={{ "DL-037": "HR Committee form (MEM-05) used to record membership admission decisions" }} />
+          <RelatedDocs title="Committee documents" intro="Announcement letters and committee forms. Preview here or download the PDF." ids={committeeDocs.slice(0, 3)} />
+          <SeeMore count={committeeDocs.length - 3}>
+            <RelatedDocs title="More committee documents" headingClass="pc-sr" ids={committeeDocs.slice(3)} notes={{ "DL-037": "HR Committee form (MEM-05) used to record membership admission decisions" }} />
+          </SeeMore>
         </>
       )}
 

@@ -41,7 +41,7 @@ export default function AboutPage() {
           </Link>
         </div>
       </div>
-      <Band src="/images/farm/farmers-inspecting-crops.jpg" alt="Farmers inspecting healthy crops in the evening sun" caption="Protecting crops, responsibly" pos="50% 58%" />
+      <Band src="/images/farm/farmer-spraying-rows.jpg" alt="A farmer with a backpack sprayer walking between rows of a young green crop" caption="Protecting crops, responsibly" pos="50% 70%" />
       <h2 className="pc-h2">What we do</h2>
       <div className="pc-grid pc-grid-2">
         {objectives.map((o) => (

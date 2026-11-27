@@ -21,7 +21,6 @@ export const socialLinks = socialProfiles.filter((s) => s.href);
 export const officialEmails = [
   { role: "General enquiries", name: "PCPA Secretariat", email: "info@pcpa.pk" },
   { role: "Chairman", name: "Muhammad Mushtaq Ahmad", email: "chairman@pcpa.pk" },
-  { role: "Senior Vice Chairman", name: "Muhammad Altaf Shahid", email: "sr.vicechairman@pcpa.pk" },
   { role: "Vice Chairman", name: "Iftikhar Ahmad", email: "vicechairman@pcpa.pk" },
   { role: "Secretary General", name: "Muhammad Ali Raza", email: "secretarygeneral@pcpa.pk" },
   { role: "Finance Secretary", name: "Muhammad Farooq", email: "finance@pcpa.pk" },

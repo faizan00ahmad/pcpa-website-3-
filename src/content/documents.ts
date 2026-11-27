@@ -21,6 +21,7 @@ export const categories = [
   "Meeting Documents",
   "Notifications",
   "HR & IT Committee",
+  "Committee Documents",
   "Election Documents",
 ] as const;
 
@@ -52,6 +53,15 @@ const all: DocItem[] = [
   d(35, "PCPA Member Undertaking", "/docs/PCPA-MEMBER-UNDERTAKING.pdf", "Membership Forms", "2026", "PCPA Secretariat", { featured: true, date: "Oct 2026", status: "Latest" }),
   // HR & IT Committee
   d(37, "HR Committee Membership Review", "/docs/HR-COMMITTEE-MEMBERSHIP-REVIEW.pdf", "HR & IT Committee", "2026", "PCPA Secretariat", { featured: true, date: "Oct 2026", status: "Latest" }),
+  // Committee announcements 2026-28 (recipient mobiles and personal email covered)
+  d(42, "HR & IT Committee 2026-28 – Announcement", "/docs/COMMITTEE-HR-IT-2026-28.pdf", "Committee Documents", "2026", "PCPA Secretariat", { featured: true, date: "12 Oct 2026", status: "Latest" }),
+  d(43, "Legal Committee 2026-28 – Announcement", "/docs/COMMITTEE-LEGAL-2026-28.pdf", "Committee Documents", "2026", "PCPA Secretariat", { featured: true, date: "12 Oct 2026", status: "Latest" }),
+  d(44, "Fertilizer Committee 2026-28 – Announcement", "/docs/COMMITTEE-FERTILIZER-2026-28.pdf", "Committee Documents", "2026", "PCPA Secretariat", { featured: true, date: "12 Oct 2026", status: "Latest" }),
+  d(45, "Technical & Strategic Planning Committee 2026-28 – Announcement", "/docs/COMMITTEE-TECHNICAL-STRATEGIC-2026-28.pdf", "Committee Documents", "2026", "PCPA Secretariat", { featured: true, date: "12 Oct 2026", status: "Latest" }),
+  d(46, "Fund Raising Committee 2026-28 – Announcement", "/docs/COMMITTEE-FUND-RAISING-2026-28.pdf", "Committee Documents", "2026", "PCPA Secretariat", { featured: true, date: "12 Oct 2026", status: "Latest" }),
+  d(47, "E-Biz & Artificial Intelligence in Agriculture Committee 2026-28 – Announcement", "/docs/COMMITTEE-EBIZ-AI-2026-28.pdf", "Committee Documents", "2026", "PCPA Secretariat", { featured: true, date: "12 Oct 2026", status: "Latest" }),
+  d(48, "High Value Addition Committee 2026-28 – Convener", "/docs/COMMITTEE-HIGH-VALUE-ADDITION-2026-28.pdf", "Committee Documents", "2026", "PCPA Secretariat", { featured: true, date: "12 Oct 2026", status: "Latest" }),
+  d(49, "Chief Coordinator 2026-28 – Selection Letter", "/docs/CHIEF-COORDINATOR-2026-28.pdf", "Committee Documents", "2026", "PCPA Secretariat", { featured: true, date: "3 Oct 2026", status: "Latest" }),
   // Member lists
   d(7, "Corporate Members PCPA (2025-26)", "/docs/CORPORATE-MEMBERS-PCPA.pdf", "Member Lists", "2026", "PCPA Secretariat", { date: "24 Jan 2026", status: "Latest" }),
   d(8, "Associate Members PCPA (2025-26)", "/docs/ASSOCIATE-MEMBERS-PCPA.pdf", "Member Lists", "2026", "PCPA Secretariat", { date: "24 Jan 2026", status: "Latest" }),
