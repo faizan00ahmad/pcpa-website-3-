@@ -15,7 +15,7 @@ const services: { title: string; text: string; href: string; cta: string; icon: 
   { title: "Become a member", text: "A clear procedure, a published fee schedule and a certificate on approval.", href: "/membership/apply", cta: "Apply now", icon: "form", tone: "dark", wide: true },
   { title: "Download centre", text: "Search forms, lists, circulars and records.", href: "/downloads", cta: "Browse", icon: "download" },
   { title: "Meetings & elections", text: "Key dates, meetings and voter lists.", href: "/meetings", cta: "View", icon: "calendar" },
-  { title: "Member directory", text: "Find Corporate members by name and city.", href: "/membership/directory", cta: "Search", icon: "users" },
+  { title: "Member directory", text: "Find Corporate and Associate members by name and city.", href: "/membership/directory", cta: "Search", icon: "users" },
   { title: "Renew membership", text: "Update your records and renew for the year.", href: "/membership/renew", cta: "Renew", icon: "renew" },
   { title: "Complaints & suggestions", text: "Every submission gets a reference number so you can follow its progress.", href: "/complaints", cta: "Submit", icon: "chat", tone: "accent", wide: true },
 ];
@@ -31,8 +31,8 @@ export default function Home() {
         <div className="pc-wrap pc-hero-content">
           <h1 className="pc-sr">Protecting Pakistan&apos;s Crops</h1>
           <div className="pc-hero-cta">
-            <Link href="/membership/apply" className="pc-btn pc-btn-primary pc-btn-hero">
-              Apply for membership <Icon name="arrow" size={18} />
+            <Link href="/leadership/cabinet" className="pc-btn pc-btn-primary pc-btn-hero">
+              See the leadership <Icon name="arrow" size={18} />
             </Link>
             <Link href="/downloads" className="pc-btn pc-btn-glass pc-btn-hero">
               Download centre <Icon name="download" size={18} />

@@ -23,6 +23,7 @@ const profile = (m: CommitteeMember, role?: string): Profile => ({
   name: m.name,
   role,
   lines: [m.company, m.area].filter((x): x is string => Boolean(x)),
+  photo: m.photo,
 });
 
 export default async function CommitteePage({ params }: Props) {

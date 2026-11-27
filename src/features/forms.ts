@@ -56,7 +56,7 @@ export const applyForm: FormConfig = {
 
 export const renewForm: FormConfig = {
   heading: "Renew Membership",
-  intro: "Enter your membership number first. If it is in the member directory, your company and class are filled in for you.",
+  intro: "Enter your membership number first. Type just the number (for example 1) and it becomes PCPA-C-001; type A first for Associate members. Your company, class, authorized person and email are then filled in from the member lists.",
   prefix: "REN",
   kind: "Membership renewal",
   submitLabel: "Request Renewal",

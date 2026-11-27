@@ -2,7 +2,7 @@
  * PCPA committees for the 2026-28 term, as announced in the Secretary General's letters of 12 October 2026.
  * Phone numbers and personal emails from the letters are deliberately not published.
  */
-export type CommitteeMember = { name: string; company: string; area?: string };
+export type CommitteeMember = { name: string; company: string; area?: string; photo?: string };
 
 export type Committee = {
   slug: string;
@@ -64,7 +64,8 @@ export const committees: Committee[] = [
     name: "Legal Committee",
     icon: "scale",
     group: "main",
-    convener: one("Asfand Riaz Gorya|Agro Zat International"),
+    // same portrait as the Cabinet page (Legal Secretary)
+    convener: { ...one("Asfand Riaz Gorya|Agro Zat International"), photo: "/images/leaders/asfand-goraya.jpg" },
     coConvener: one("Muhammad Mansoor Shahid|Agro One Enterprises"),
     members: people([
       "Pir Fakhar Ahmad Bodla|New Farm Agri Services (Pvt) Ltd",

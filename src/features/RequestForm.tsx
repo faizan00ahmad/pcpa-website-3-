@@ -47,12 +47,41 @@ export function RequestForm({ config, defaults = {} }: { config: FormConfig; def
   const [match, setMatch] = useState<{ ok: boolean; text: string } | null>(null);
   const filled = useRef(false);
 
+  const lookupName = config.lookupField ?? "membership";
+
+  /** Builds PCPA-C-001 while the member types: the prefix and dashes are added for them (C unless they type A). */
+  function formatMemberNo(value: string, deleting: boolean) {
+    const raw = value.toUpperCase().replace(/[^A-Z0-9]/g, "");
+    if (!raw || "PCPA".startsWith(raw)) return raw === "PCPA" && !deleting ? "PCPA-" : raw;
+    const rest = raw.replace(/^PCPA/, "");
+    const cls = /^[CA]/.test(rest) ? rest[0] : "C";
+    const digits = rest.replace(/\D/g, "").slice(0, 3);
+    if (!digits) return deleting ? `PCPA-${/^[CA]/.test(rest) ? cls : ""}` : `PCPA-${cls}-`;
+    return `PCPA-${cls}-${digits}`;
+  }
+
+  function onMemberInput(e: React.ChangeEvent<HTMLInputElement>) {
+    const deleting = (e.nativeEvent as InputEvent).inputType?.startsWith("delete") ?? false;
+    e.target.value = formatMemberNo(e.target.value, deleting);
+  }
+
+  /** Leaving the field completes the number: PCPA-C-7 becomes PCPA-C-007. */
+  function onMemberBlur(e: React.FocusEvent<HTMLInputElement>) {
+    const m = e.target.value.match(/^(PCPA-[CA]-)(\d{1,2})$/);
+    if (!m || !e.target.form) return;
+    e.target.value = m[1] + m[2].padStart(3, "0");
+    runLookup(e.target.form, e.target.value);
+  }
+
   /** Membership number typed: look it up in the member directory and fill the related fields. */
   function onChange(e: React.FormEvent<HTMLFormElement>) {
     const t = e.target as HTMLInputElement;
-    if (config.lookup !== "directory" || t.name !== (config.lookupField ?? "membership")) return;
-    const form = e.currentTarget;
-    const value = t.value.trim().toUpperCase().replace(/\s+/g, "");
+    if (config.lookup !== "directory" || t.name !== lookupName) return;
+    runLookup(e.currentTarget, t.value);
+  }
+
+  function runLookup(form: HTMLFormElement, typed: string) {
+    const value = typed.trim().toUpperCase().replace(/\s+/g, "");
     const set = (name: string, v: string) => {
       const el = form.elements.namedItem(name) as HTMLInputElement | HTMLSelectElement | null;
       if (el) el.value = v;
@@ -61,15 +90,20 @@ export function RequestForm({ config, defaults = {} }: { config: FormConfig; def
     if (found) {
       set("company", found.company);
       set("membership_class", found.cls);
+      set("person", found.person ?? "");
+      set("email", found.email ?? "");
       filled.current = true;
-      setMatch({ ok: true, text: `Member found: ${found.company} · ${found.cls} · ${found.city}. Details filled in below.` });
+      const missing = [!found.person && "authorized person", !found.email && "email"].filter(Boolean).join(" and ");
+      setMatch({
+        ok: true,
+        text: `Member found: ${found.company} · ${found.cls} · ${found.city}. ${missing ? `The member list has no ${missing}, so please type it below.` : "Details filled in below; please check them."}`,
+      });
     } else {
       if (filled.current) {
-        set("company", "");
-        set("membership_class", "");
+        for (const name of ["company", "membership_class", "person", "email"]) set(name, "");
         filled.current = false;
       }
-      setMatch(value.length >= 5 ? { ok: false, text: "No member found with this number. Check it, or fill in the details below by hand." } : null);
+      setMatch(value.length >= 10 ? { ok: false, text: "No member found with this number. Check it, or fill in the details below by hand." } : null);
     }
   }
 
@@ -211,10 +245,17 @@ export function RequestForm({ config, defaults = {} }: { config: FormConfig; def
                   ) : type === "file" ? (
                     <input id={id} name={fd.name} type="file" className="pc-input pc-file" />
                   ) : (
-                    <input {...common} type={type} className="pc-input" placeholder={fd.placeholder} autoComplete="off" />
+                    <input
+                      {...common}
+                      type={type}
+                      className="pc-input"
+                      placeholder={fd.placeholder}
+                      autoComplete="off"
+                      {...(config.lookup && fd.name === lookupName ? { onChange: onMemberInput, onBlur: onMemberBlur, maxLength: 14, autoCapitalize: "characters" } : {})}
+                    />
                   )}
                   {fd.help && <small className="pc-help">{fd.help}</small>}
-                  {config.lookup && fd.name === (config.lookupField ?? "membership") && match && (
+                  {config.lookup && fd.name === lookupName && match && (
                     <small className={`pc-lookup ${match.ok ? "ok" : "miss"}`} role="status">
                       {match.text}
                     </small>

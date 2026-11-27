@@ -120,7 +120,7 @@ export default async function MembershipPage({ params }: { params: Promise<{ slu
             <Notice tone="alert">The searchable directory is being compiled from the official Corporate and Associate member lists. Meanwhile, open the PDFs below.</Notice>
           ) : (
             <>
-              <Notice>Corporate members (2025-26 list) are searchable below. Membership numbers and photos shown here are placeholders until the real ones are supplied. The Associate members list is available as a PDF below.</Notice>
+              <Notice>Corporate and Associate members (2025-26 lists) are searchable below. Membership numbers and photos shown here are placeholders until the real ones are supplied.</Notice>
               <Directory entries={directory} />
             </>
           )}

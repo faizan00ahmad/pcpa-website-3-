@@ -1,9 +1,13 @@
 /*
- * Member directory: company name, class and city only (no addresses, emails or contact persons).
- * Source: "Corporate Members PCPA for the Year 2025-26" (77 companies), as published by the Secretariat.
- * Associate members will be added when that list is transcribed; until then the Associate PDF remains linked on the page.
+ * Member directory: company name, class, city, authorized person and email (no street addresses, phone or ID numbers).
+ * Sources: "Corporate Members PCPA for the Year 2025-26" (77 companies, below) and
+ * "Associate PCPA Members for 2025-26" (379 companies, directory-associate.ts), as published by the Secretariat.
  */
-export type DirectoryEntry = { company: string; cls: "Corporate" | "Associate"; city: string; no: string; photo?: string };
+import { associate } from "./directory-associate";
+import { associatePersons, corporatePersons } from "./directory-persons";
+import { associateEmails, corporateEmails } from "./directory-emails";
+
+export type DirectoryEntry = { company: string; cls: "Corporate" | "Associate"; city: string; no: string; person?: string; email?: string; photo?: string };
 
 const corporate: [string, string][] = [
   ["Jullundur (Pvt) Ltd", "Arifwala"],
@@ -86,4 +90,9 @@ const corporate: [string, string][] = [
 ];
 
 /** `no` and `photo` are DUMMY values for the new card layout: replace with the real membership numbers and photo/logo files (e.g. "/images/members/jullundur.jpg") when supplied. */
-export const directory: DirectoryEntry[] = corporate.map(([company, city], i) => ({ company, cls: "Corporate", city, no: `PCPA-C-${String(i + 1).padStart(3, "0")}` }));
+const num = (cls: "C" | "A", i: number) => `PCPA-${cls}-${String(i + 1).padStart(3, "0")}`;
+
+export const directory: DirectoryEntry[] = [
+  ...corporate.map(([company, city], i) => ({ company, cls: "Corporate" as const, city, no: num("C", i), person: corporatePersons[i] || undefined, email: corporateEmails.get(i + 1) })),
+  ...associate.map(({ company, city }, i) => ({ company, cls: "Associate" as const, city, no: num("A", i), person: associatePersons[i] || undefined, email: associateEmails.get(i + 1) })),
+];

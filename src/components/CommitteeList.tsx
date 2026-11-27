@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Icon, type IconName } from "@/components/Icon";
 import { Avatar, initialsOf } from "@/components/ProfileCards";
@@ -41,17 +42,19 @@ type FeatureProps = {
   text?: string;
   /** Initials in the circle; without it the committee icon is shown */
   mark?: string;
+  /** Portrait shown in the circle instead of initials */
+  photo?: string;
   doc?: string;
   href?: string;
 };
 
 /** The large green card used for the Chief Coordinator and the three main committees. */
-function Feature({ id, tag, tagIcon, name, meta, text, mark, doc, href }: FeatureProps) {
+function Feature({ id, tag, tagIcon, name, meta, text, mark, photo, doc, href }: FeatureProps) {
   const [d] = withSizes(documents.filter((x) => x.id === doc));
   return (
     <section className="pc-chief" aria-labelledby={id}>
-      <span className="pc-chief-mark" aria-hidden>
-        {mark ?? <Icon name={tagIcon} size={44} />}
+      <span className="pc-chief-mark" aria-hidden={photo ? undefined : true}>
+        {photo ? <Image src={photo} alt={name} width={296} height={296} sizes="148px" /> : (mark ?? <Icon name={tagIcon} size={44} />)}
       </span>
       <div className="pc-chief-body">
         <h3 id={id} className="pc-chief-tag">
@@ -115,6 +118,7 @@ export function CommitteeList() {
             tagIcon={c.icon as IconName}
             name={c.convener?.name ?? "Convener to be announced"}
             mark={c.convener && initialsOf(c.convener.name)}
+            photo={c.convener?.photo}
             meta={[
               { icon: "users", text: c.convener ? "Convener" : undefined },
               { icon: "building", text: c.convener?.company },
