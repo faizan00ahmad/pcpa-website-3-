@@ -57,7 +57,7 @@ Muhammad Sarwar
 Shamsher Hussain
 Choudhry Usman Rafique
 Dr. Usman
-Asfand Riaz Gorya
+Asfand Riaz Goraya
 Uzair Ahmed
 Ghulam Farid + Faisal Saddique
 Shehzad Ali Malik

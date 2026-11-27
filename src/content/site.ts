@@ -24,7 +24,7 @@ export const officialEmails = [
   { role: "Vice Chairman", name: "Iftikhar Ahmad", email: "vicechairman@pcpa.pk" },
   { role: "Secretary General", name: "Muhammad Ali Raza", email: "secretarygeneral@pcpa.pk" },
   { role: "Finance Secretary", name: "Muhammad Farooq", email: "finance@pcpa.pk" },
-  { role: "Legal Secretary", name: "Asfand Riaz Gorya", email: "legal@pcpa.pk" },
+  { role: "Legal Secretary", name: "Asfand Riaz Goraya", email: "legal@pcpa.pk" },
   { role: "HR & IT Committee", name: "HR & IT Committee", email: "hr@pcpa.pk" },
 ];
 

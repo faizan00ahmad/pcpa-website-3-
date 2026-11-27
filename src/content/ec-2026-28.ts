@@ -23,7 +23,7 @@ export const ecCorporate: Member[] = rows("Corporate", [
   ["61", "Ghulam Farid", "Rise AG Pakistan (Pvt) Ltd"],
   ["32", "Muhammad Ahmad Tanvir", "Greengro Pvt Ltd."],
   ["836", "Faisal Arshad", "Al-Noor Agro Chemicals"],
-  ["689", "Asfand Riaz Gorya", "Agro Zat International"],
+  ["689", "Asfand Riaz Goraya", "Agro Zat International"],
   ["866", "Qaiser Abbas", "Agrow Limited"],
   ["185", "Ahmed Shafi", "Agrimore (Pvt.) Ltd."],
   ["890", "Asif Ali Zaheer", "Agricom International"],

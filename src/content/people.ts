@@ -8,7 +8,7 @@ export const cabinet: Person[] = [
   { name: "Muhammad Altaf Shahid", title: "Senior Vice Chairman", image: "/images/leaders/altaf-shahid.jpg", org: "Solex Chemicals (Pvt.) Ltd.", address: "25-A-II, Industrial Estate, Multan", web: "www.solex.com.pk" },
   { name: "Iftikhar Ahmad", title: "Vice Chairman", image: "/images/leaders/iftikhar-ahmad.jpg", org: "Al-Ghani International", address: "Plot No. 89, Industrial Estate, Multan" },
   { name: "Muhammad Farooq", title: "Finance Secretary", image: "/images/leaders/farooq-hasnain.jpg", org: "Topsun Chemicals Enterprises", address: "93-A, Khayban-e-Sarwar, DG Khan", web: "www.topsunchemical.com" },
-  { name: "Asfand Riaz Gorya", title: "Legal Secretary", image: "/images/leaders/asfand-goraya.jpg", org: "Agro Zat International", address: "10-11 Km, Lahore Side, Near Attawa Restaurant, G.T. Road, Gujranwala", web: "www.agrozatinternational.com" },
+  { name: "Asfand Riaz Goraya", title: "Legal Secretary", image: "/images/leaders/asfand-goraya.jpg", org: "Agro Zat International", address: "10-11 Km, Lahore Side, Near Attawa Restaurant, G.T. Road, Gujranwala", web: "www.agrozatinternational.com" },
   { name: "Muhammad Ali Raza", title: "Secretary General", image: "/images/leaders/ali-raza.webp", org: "PCPA Secretariat", address: "Plot No. 7 & 8, Phase-I, Industrial Estate, Multan" },
 ];
 

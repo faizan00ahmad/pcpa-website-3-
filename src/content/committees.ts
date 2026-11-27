@@ -57,6 +57,9 @@ export const committees: Committee[] = [
     name: "Finance Committee",
     icon: "rs",
     group: "main",
+    // same name, company and portrait as the Cabinet page (Finance Secretary)
+    convener: { ...one("Muhammad Farooq|Topsun Chemicals Enterprises"), photo: "/images/leaders/farooq-hasnain.jpg" },
+    note: "The other members of this committee will be published here.",
     members: [],
   },
   {
@@ -65,7 +68,7 @@ export const committees: Committee[] = [
     icon: "scale",
     group: "main",
     // same portrait as the Cabinet page (Legal Secretary)
-    convener: { ...one("Asfand Riaz Gorya|Agro Zat International"), photo: "/images/leaders/asfand-goraya.jpg" },
+    convener: { ...one("Asfand Riaz Goraya|Agro Zat International"), photo: "/images/leaders/asfand-goraya.jpg" },
     coConvener: one("Muhammad Mansoor Shahid|Agro One Enterprises"),
     members: people([
       "Pir Fakhar Ahmad Bodla|New Farm Agri Services (Pvt) Ltd",
